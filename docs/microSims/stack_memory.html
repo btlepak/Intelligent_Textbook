@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Memory MicroSim</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .stack-container { display: flex; flex-direction: column-reverse; align-items: center; margin-top: 20px; }
+        .stack-frame { border: 1px solid black; padding: 10px; width: 150px; margin: 5px; background-color: lightgray; }
+        .controls { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Stack Memory Simulation</h2>
+    <div class="stack-container" id="stack"></div>
+    <div class="controls">
+        <input type="text" id="value" placeholder="Enter value">
+        <button onclick="pushValue()">Push</button>
+        <button onclick="popValue()">Pop</button>
+    </div>
+    <script>
+        let stack = [];
+        function updateStackDisplay() {
+            const stackContainer = document.getElementById("stack");
+            stackContainer.innerHTML = "";
+            stack.forEach((value, index) => {
+                let frame = document.createElement("div");
+                frame.className = "stack-frame";
+                frame.innerText = `Frame ${stack.length - index}: ${value}`;
+                stackContainer.appendChild(frame);
+            });
+        }
+        function pushValue() {
+            let value = document.getElementById("value").value;
+            if (value) {
+                stack.push(value);
+                document.getElementById("value").value = "";
+                updateStackDisplay();
+            }
+        }
+        function popValue() {
+            if (stack.length > 0) {
+                stack.pop();
+                updateStackDisplay();
+            }
+        }
+    </script>
+</body>
+</html>

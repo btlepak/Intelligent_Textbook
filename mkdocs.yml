@@ -16,6 +16,18 @@ nav:
     - Sockets and Communication: chapters/10-SandC.md
     - TCP & UDP: chapters/11-tcpudp.md
     - Threads: chapters/12-threads.md
+  - Projects:
+    - Project 1: projects/proj1.md
+    - Project 2: projects/proj2.md
+    - Project 3: projects/proj3.md
+    - Project 4: projects/proj4.md
+  - Prompts: 
+    - Prompt 1: prompts/prompt1.md
+  - MircoSims: microSims/index.md
+  - Contact: contact.md
+
+extra_javascript:
+  - microSims/stack_memory.html
 
 theme:
   name: material

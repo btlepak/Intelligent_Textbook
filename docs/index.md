@@ -1,6 +1,6 @@
 # Introduction to Operating Systems
 
-![alt text](operating_systems.jpg)
+![](./images/operating_systems.jpg)
 
 Welcome! This site will serve as a guide for a collegiate level Introduction to Operating Systems course. 
 Much of the features of the site are created with or use an AI model, some of which may reqiure access to one of the
