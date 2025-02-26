@@ -1,12 +1,21 @@
-site_name: Mkdocs for Intelligent Textbooks
+site_name: Intelligent Textbook v1
 repo_url: https://github.com/btlepak/i-book-v1
 nav:
   - Home: index.md
+  - Course Description: cd.md
   - List of Chapters:
-    - Intro: chapters/index.md
-    - Chapter 1: chapters/chapter-1.md
-    - Chapter 2: chapters/chapter-2.md
-    - Chapter 3: chapters/chapter-3.md
+    - Introduction: chapters/1-intro.md
+    - Operating Systems Overview: chapters/2-overview.md
+    - Programs and Processes: chapters/3-PandP.md
+    - I/O Basics & Redirection: chapters/4-io.md
+    - File Systems: chapters/5-fs.md
+    - Virtual Memory: chapters/6-vm.md
+    - Signals: chapters/7-signals.md
+    - Pipes: chapters/8-pipes.md
+    - Shared Memory: chapters/9-sm.md
+    - Sockets and Communication: chapters/10-SandC.md
+    - TCP & UDP: chapters/11-tcpudp.md
+    - Threads: chapters/12-threads.md
 
 theme:
   name: material
