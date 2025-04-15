@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../chapters/10_threads/">
+        <link rel="prev" href="../1_PandP/">
       
       
-        <link rel="next" href="../../sims/learning-graph/">
+        <link rel="next" href="../3_fs/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Project 1 - Intelligent Textbook v1</title>
+        <title>I/O Basics & Redirection - Intelligent Textbook v1</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-1-minitar-a-posix-compatible-archive-utility" class="md-skip">
+        <a href="#chapter-2-io-basics-redirection" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project 1
+              I/O Basics & Redirection
             
           </span>
         </div>
@@ -254,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -279,7 +281,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             List of Chapters
@@ -293,7 +295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/1_PandP/" class="md-nav__link">
+      <a href="../1_PandP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -312,10 +314,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../chapters/2_io/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    I/O Basics & Redirection
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -325,6 +348,173 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-descriptors-and-standard-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Descriptors and Standard Streams
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Descriptors and Standard Streams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-writing-to-standard-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Writing to Standard Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-calls-for-io-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Calls for I/O Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Calls for I/O Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-reading-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Reading from a File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-and-output-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input and Output Redirection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Input and Output Redirection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-redirecting-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Redirecting Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipes-and-command-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipes and Command Chaining
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipes and Command Chaining">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-using-a-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using a Pipe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling-in-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling in I/O
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling in I/O">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-handling-file-opening-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Handling File Opening Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -337,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/3_fs/" class="md-nav__link">
+      <a href="../3_fs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -359,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/4_vm/" class="md-nav__link">
+      <a href="../4_vm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/5_signals/" class="md-nav__link">
+      <a href="../5_signals/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/6_pipes/" class="md-nav__link">
+      <a href="../6_pipes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/7_sm/" class="md-nav__link">
+      <a href="../7_sm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -447,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/8_SandC/" class="md-nav__link">
+      <a href="../8_SandC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/9_tcpudp/" class="md-nav__link">
+      <a href="../9_tcpudp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/10_threads/" class="md-nav__link">
+      <a href="../10_threads/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -517,19 +707,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -544,7 +732,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Projects
@@ -555,31 +743,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Project 1
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../projects/proj1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,221 +756,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Starter Code
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      💻 Makefile Commands
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧪 Manual Testing Advice
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧰 Starter Code Files
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
-    <span class="md-ellipsis">
-      tar_header Struct
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Archive Operations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful C Functions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1059,46 +1011,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Source
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
+  <a href="#file-descriptors-and-standard-streams" class="md-nav__link">
     <span class="md-ellipsis">
-      📦 Starter Code
+      File Descriptors and Standard Streams
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
+    <nav class="md-nav" aria-label="File Descriptors and Standard Streams">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
+  <a href="#example-writing-to-standard-output" class="md-nav__link">
     <span class="md-ellipsis">
-      💻 Makefile Commands
+      Example: Writing to Standard Output
     </span>
   </a>
   
@@ -1110,37 +1044,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
+  <a href="#system-calls-for-io-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      🧪 Manual Testing Advice
+      System Calls for I/O Operations
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧰 Starter Code Files
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
+    <nav class="md-nav" aria-label="System Calls for I/O Operations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
+  <a href="#example-reading-from-a-file" class="md-nav__link">
     <span class="md-ellipsis">
-      tar_header Struct
+      Example: Reading from a File
     </span>
   </a>
   
@@ -1152,55 +1068,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
+  <a href="#input-and-output-redirection" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Archive Operations
+      Input and Output Redirection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
+    <nav class="md-nav" aria-label="Input and Output Redirection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
+  <a href="#example-redirecting-output" class="md-nav__link">
     <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
+      Example: Redirecting Output
     </span>
   </a>
   
@@ -1212,19 +1092,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
+  <a href="#pipes-and-command-chaining" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
+      Pipes and Command Chaining
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
+    <nav class="md-nav" aria-label="Pipes and Command Chaining">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
+  <a href="#example-using-a-pipe" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful C Functions
+      Example: Using a Pipe
     </span>
   </a>
   
@@ -1236,9 +1116,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
+  <a href="#error-handling-in-io" class="md-nav__link">
     <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
+      Error Handling in I/O
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling in I/O">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-handling-file-opening-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Handling File Opening Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
     </span>
   </a>
   
@@ -1247,7 +1151,7 @@
         <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 Summary
+      Summary
     </span>
   </a>
   
@@ -1272,182 +1176,157 @@
   
 
 
-<h1 id="project-1-minitar-a-posix-compatible-archive-utility"><strong>Project 1: minitar - A Posix-Compatible Archive Utility</strong></h1>
-<h2 id="source">Source</h2>
-<p>This project was taken from CSCI 4061 Intro to Operating Systems at the University of Minnesota - Twin Cities [Fall 2024], taught by <a href="https://cse.umn.edu/cs/jack-kolb"><strong>Jack Kolb</strong></a>.</p>
-<h2 id="starter-code">📦 Starter Code</h2>
-<p>You can download the starter code here:
-<a href="../proj1-code.zip">proj1-code.zip</a></p>
-<p>Save the starter code under your <code>csci4061</code> directory, which should now look like this:</p>
-<div class="highlight"><pre><span></span><code>csci4061/
-├── labs/
-│   ├── lab01-code/
-│   └── ...
-└── projects/
-    └── proj1-code/
-</code></pre></div>
-<hr />
-<h2 id="how-to-succeed-on-this-project">✅ How to Succeed on This Project</h2>
-<ul>
-<li><strong>Read the spec thoroughly.</strong> TAs may decline to help if you haven’t.</li>
-<li><strong>Understand the starter code.</strong> Know what each file does.</li>
-<li><strong>Test independently.</strong> Don’t rely solely on automated tests.</li>
-<li><strong>Expect bugs.</strong> Stay patient and persistent.</li>
-<li><strong>Start early.</strong> Avoid deadline pressure.</li>
-<li><strong>Ask questions publicly on Piazza.</strong> This helps everyone.</li>
-<li><strong>Know the late policy.</strong> No submissions accepted more than 48 hours late.</li>
-</ul>
-<hr />
-<h2 id="introduction">🧭 Introduction</h2>
-<p>In this project, you will implement a simplified version of the Unix <code>tar</code> utility called <code>minitar</code>. You’ll work with C and the <code>stdio</code> library to:
-- Practice file I/O
-- Explore systems programming techniques
-- Build a Posix-compliant archive tool</p>
-<p>Your implementation will be able to:
-- Create and append to archives
-- Extract files
-- Interoperate with <code>tar</code></p>
-<hr />
-<h3 id="makefile-commands">💻 Makefile Commands</h3>
-<div class="highlight"><pre><span></span><code>make                # Compile minitar
-make clean          # Remove compiled files
-make clean-tests    # Remove test output
-make zip            # Create Gradescope zip
-make test           # Run all test cases
-make test testnum=5 # Run specific test
-</code></pre></div>
-<hr />
-<h2 id="manual-testing-advice">🧪 Manual Testing Advice</h2>
-<ul>
-<li>Use your own test cases</li>
-<li>View archives using:
-<div class="highlight"><pre><span></span><code>xxd<span class="w"> </span>test.tar<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
-</code></pre></div></li>
-<li>Use <code>tar</code> for interoperability comparison</li>
-<li>Install <code>xxd</code> in Docker:
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
-apt<span class="w"> </span>install<span class="w"> </span>xxd
-</code></pre></div></li>
-</ul>
-<hr />
-<h2 id="starter-code-files">🧰 Starter Code Files</h2>
+<h1 id="chapter-2-io-basics-redirection"><strong>Chapter 2: I/O Basics &amp; Redirection</strong></h1>
+<h2 id="overview">Overview</h2>
+<p>This chapter covers fundamental concepts of Input/Output (I/O) operations in Unix-based operating systems, with a focus on file descriptors, standard streams, and redirection techniques. Understanding how I/O works at the system level is crucial for efficient programming and automation.</p>
+<p>Key topics covered in this chapter include:
+- File descriptors and standard streams
+- System calls for I/O operations
+- Input and output redirection
+- Pipes and command chaining
+- Error handling in I/O operations</p>
+<h2 id="file-descriptors-and-standard-streams">File Descriptors and Standard Streams</h2>
+<p>In Unix-like operating systems, every process interacts with files and devices through <strong>file descriptors</strong>, which are integer handles assigned by the kernel. The three standard file descriptors are:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
-<th>Notes</th>
+<th>File Descriptor</th>
+<th>Symbolic Name</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Makefile</code></td>
-<td>Build/tests</td>
-<td>Do not modify</td>
+<td>0</td>
+<td><code>STDIN</code></td>
+<td>Standard Input (keyboard by default)</td>
 </tr>
 <tr>
-<td><code>file_list.h</code> / <code>file_list.c</code></td>
-<td>Linked list support</td>
-<td>Do not modify</td>
+<td>1</td>
+<td><code>STDOUT</code></td>
+<td>Standard Output (screen by default)</td>
 </tr>
 <tr>
-<td><code>minitar.h</code></td>
-<td>Archive headers</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>minitar.c</code></td>
-<td>Archive operations</td>
-<td><strong>EDIT THIS</strong></td>
-</tr>
-<tr>
-<td><code>minitar_main.c</code></td>
-<td>CLI logic</td>
-<td><strong>EDIT THIS</strong></td>
-</tr>
-<tr>
-<td><code>testius</code></td>
-<td>Test runner</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>test_cases/</code></td>
-<td>Sample inputs</td>
-<td>Do not modify</td>
+<td>2</td>
+<td><code>STDERR</code></td>
+<td>Standard Error (screen by default)</td>
 </tr>
 </tbody>
 </table>
-<p>Only modify the files marked as <strong>EDIT</strong>.</p>
-<hr />
-<h2 id="archive-format-overview">📦 Archive Format Overview</h2>
+<h3 id="example-writing-to-standard-output">Example: Writing to Standard Output</h3>
+<p>The following C program demonstrates writing to <code>STDOUT</code> using <code>write()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="system-calls-for-io-operations">System Calls for I/O Operations</h2>
+<p>Unix provides system calls for low-level I/O operations:</p>
 <ul>
-<li>Each archive is made of 512-byte blocks</li>
-<li>Each file: 1 header block + content blocks</li>
-<li>Ends with <strong>two zero blocks</strong></li>
+<li><code>open()</code>: Opens a file and returns a file descriptor.</li>
+<li><code>read()</code>: Reads data from a file descriptor.</li>
+<li><code>write()</code>: Writes data to a file descriptor.</li>
+<li><code>close()</code>: Closes an open file descriptor.</li>
 </ul>
-<h3 id="tar_header-struct">tar_header Struct</h3>
-<p>Defined in <code>minitar.h</code>, it uses <strong>octal-encoded strings</strong> for numeric fields.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w">  </span><span class="c1">// octal, null-terminated string</span>
+<h3 id="example-reading-from-a-file">Example: Reading from a File</h3>
+<p>The following C program reads from a file using <code>open()</code> and <code>read()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;Error opening file&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>Use <code>fill_tar_header()</code> to generate headers.</p>
-<hr />
-<h2 id="archive-operations">🚀 Archive Operations</h2>
-<h3 id="create">Create</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>file1<span class="w"> </span>file2
-</code></pre></div>
-- Write header and data for each file
-- Add two-block footer</p>
-<h3 id="append">Append</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-a<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>newfile
-</code></pre></div>
-- Remove footer with <code>remove_trailing_bytes()</code>
-- Append new headers/data
-- Add new footer</p>
-<h3 id="list">List</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>archive.tar
-</code></pre></div>
-- Print name of each file in archive
-- Stop when footer blocks are reached</p>
-<h3 id="update">Update</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-u<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>existingfile
-</code></pre></div>
-- Like append, but must already exist in archive
-- Error message if not:
-<div class="highlight"><pre><span></span><code>Error: One or more of the specified files is not already present in archive.
-</code></pre></div></p>
-<h3 id="extract">Extract</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>archive.tar
-</code></pre></div>
-- Write out each member file
-- Only extract latest version if duplicates exist</p>
-<hr />
-<h2 id="tips-assumptions">💡 Tips &amp; Assumptions</h2>
+<h2 id="input-and-output-redirection">Input and Output Redirection</h2>
+<p>Unix shells allow redirection of standard streams:</p>
 <ul>
-<li>No nested directory support</li>
-<li>Use high-level I/O (<code>fopen</code>, not <code>open</code>)</li>
-<li>Use <code>memset()</code>, <code>fseek()</code>, <code>ftell()</code></li>
-<li>Leverage <code>fill_tar_header()</code> and <code>file_list</code> utilities</li>
+<li><code>command &gt; file</code> → Redirects <strong>stdout</strong> to a file.</li>
+<li><code>command &lt; file</code> → Redirects <strong>stdin</strong> from a file.</li>
+<li><code>command 2&gt; file</code> → Redirects <strong>stderr</strong> to a file.</li>
+<li><code>command &gt;&gt; file</code> → Appends <strong>stdout</strong> to a file.</li>
 </ul>
-<h3 id="useful-c-functions">Useful C Functions</h3>
+<h3 id="example-redirecting-output">Example: Redirecting Output</h3>
+<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, Unix!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>output.txt
+</code></pre></div>
+This command writes "Hello, Unix!" into <code>output.txt</code> instead of displaying it on the screen.</p>
+<h2 id="pipes-and-command-chaining">Pipes and Command Chaining</h2>
+<p>Pipes (<code>|</code>) allow chaining of commands by redirecting the output of one command as the input of another.</p>
+<h3 id="example-using-a-pipe">Example: Using a Pipe</h3>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;txt&quot;</span>
+</code></pre></div>
+This command lists files and filters results containing "txt".</p>
+<h2 id="error-handling-in-io">Error Handling in I/O</h2>
+<p>Handling errors in I/O operations is crucial. The <code>perror()</code> function can be used in C to print error messages based on the global <code>errno</code> variable.</p>
+<h3 id="example-handling-file-opening-errors">Example: Handling File Opening Errors</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;errno.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;nonexistent.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;Error opening file&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="interactive-quiz">Interactive Quiz</h2>
+<p>Test your understanding of I/O basics and redirection:</p>
+<ol>
+<li>
+<p>Which file descriptor represents standard error?</p>
+<p><strong>A</strong>. 0<br>
+<strong>B</strong>. 1<br>
+<strong>C</strong>. 2<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>C</strong>. File descriptor <code>2</code> represents <code>STDERR</code> (Standard Error).</p>
+</details>
+</li>
+<li>
+<p>What does the command <code>ls &gt; output.txt</code> do?</p>
+<p><strong>A</strong>. Lists files and prints to the terminal<br>
+<strong>B</strong>. Lists files and saves output to <code>output.txt</code><br>
+<strong>C</strong>. Appends the list of files to <code>output.txt</code><br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. The <code>&gt;</code> operator redirects <code>stdout</code> to <code>output.txt</code>, overwriting its contents.</p>
+</details>
+</li>
+<li>
+<p>What does the <code>|</code> (pipe) symbol do in Unix?</p>
+<p><strong>A</strong>. Creates a new process<br>
+<strong>B</strong>. Redirects output of one command as input to another<br>
+<strong>C</strong>. Reads a file line by line<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. Pipes allow the output of one command to be used as input for another command.</p>
+</details>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
 <ul>
-<li><code>fread()</code>, <code>fwrite()</code></li>
-<li><code>ftell()</code>, <code>fseek()</code></li>
-<li><code>sscanf()</code> for octal parsing</li>
-<li><code>perror()</code> for error reporting</li>
+<li>Unix uses <strong>file descriptors</strong> (0: <code>STDIN</code>, 1: <code>STDOUT</code>, 2: <code>STDERR</code>) for I/O operations.</li>
+<li>System calls like <code>open()</code>, <code>read()</code>, <code>write()</code>, and <code>close()</code> manage file I/O.</li>
+<li><strong>Redirection (<code>&gt;</code>, <code>&lt;</code>, <code>2&gt;</code>)</strong> allows controlling input and output.</li>
+<li><strong>Pipes (<code>|</code>)</strong> enable chaining of commands.</li>
+<li>Error handling using <code>perror()</code> improves the robustness of I/O operations.</li>
 </ul>
+<p>Understanding these concepts is crucial for handling files and streams efficiently in Unix. The next chapter will explore <strong>File Systems</strong> and how Unix organizes and manages data storage.</p>
 <hr />
-<h2 id="strategy-hints">🧠 Strategy &amp; Hints</h2>
-<ul>
-<li><strong>Reuse logic</strong> between operations</li>
-<li><strong>Write helpers</strong> for block iteration</li>
-<li><strong>Start early</strong>, debug often, test manually</li>
-<li>Avoid mixing <code>fopen()</code> and <code>open()</code></li>
-</ul>
-<hr />
-<h2 id="summary">📌 Summary</h2>
-<p>This project is your first big opportunity to apply <strong>systems-level thinking</strong> and build a utility that mirrors a well-known Unix tool. You'll practice file I/O, struct management, and command-line parsing — and develop habits that will serve you in all future OS coursework.</p>
-<hr />
-<p><strong>Ready to begin? Download the <a href="../proj1-code.zip">starter code</a> and get coding!</strong></p>
+<p><em>This chapter is based on material from "Advanced Programming in the UNIX Environment, Third Edition, by W. Richard Stevens and Stephen A. Rago, 2013."</em></p>
 
 
 

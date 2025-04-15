@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../chapters/10_threads/">
+        <link rel="prev" href="../4_vm/">
       
       
-        <link rel="next" href="../../sims/learning-graph/">
+        <link rel="next" href="../6_pipes/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Project 1 - Intelligent Textbook v1</title>
+        <title>Signals - Intelligent Textbook v1</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-1-minitar-a-posix-compatible-archive-utility" class="md-skip">
+        <a href="#chapter-5-signals" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project 1
+              Signals
             
           </span>
         </div>
@@ -254,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -279,7 +281,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             List of Chapters
@@ -293,7 +295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/1_PandP/" class="md-nav__link">
+      <a href="../1_PandP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -315,7 +317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/2_io/" class="md-nav__link">
+      <a href="../2_io/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -337,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/3_fs/" class="md-nav__link">
+      <a href="../3_fs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -359,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/4_vm/" class="md-nav__link">
+      <a href="../4_vm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,10 +380,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../chapters/5_signals/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Signals
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -391,6 +414,200 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Are Signals?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Are Signals?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#characteristics-of-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Characteristics of Signals:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Signals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sending-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sending Signals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sending Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shell Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatically-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programmatically (in C)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Signals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-handling-sigint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Handling SIGINT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocking-and-ignoring-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocking and Ignoring Signals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blocking and Ignoring Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blocking-example-with-sigprocmask" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blocking Example with sigprocmask()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignoring-a-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ignoring a Signal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-tools-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Tools and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Tools and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell-example-with-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shell Example with trap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -403,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/6_pipes/" class="md-nav__link">
+      <a href="../6_pipes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/7_sm/" class="md-nav__link">
+      <a href="../7_sm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -447,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/8_SandC/" class="md-nav__link">
+      <a href="../8_SandC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/9_tcpudp/" class="md-nav__link">
+      <a href="../9_tcpudp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/10_threads/" class="md-nav__link">
+      <a href="../10_threads/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -517,19 +734,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -544,7 +759,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Projects
@@ -555,31 +770,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Project 1
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../projects/proj1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,221 +783,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Starter Code
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      💻 Makefile Commands
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧪 Manual Testing Advice
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧰 Starter Code Files
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
-    <span class="md-ellipsis">
-      tar_header Struct
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Archive Operations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful C Functions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1059,46 +1038,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Source
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
+  <a href="#what-are-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      📦 Starter Code
+      What Are Signals?
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
+    <nav class="md-nav" aria-label="What Are Signals?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
+  <a href="#characteristics-of-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      💻 Makefile Commands
+      Characteristics of Signals:
     </span>
   </a>
   
@@ -1110,37 +1071,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
+  <a href="#common-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      🧪 Manual Testing Advice
+      Common Signals
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
+  <a href="#sending-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      🧰 Starter Code Files
+      Sending Signals
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
+    <nav class="md-nav" aria-label="Sending Signals">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
+  <a href="#shell-command" class="md-nav__link">
     <span class="md-ellipsis">
-      tar_header Struct
+      Shell Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatically-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programmatically (in C)
     </span>
   </a>
   
@@ -1152,55 +1113,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
+  <a href="#handling-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Archive Operations
+      Handling Signals
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
+    <nav class="md-nav" aria-label="Handling Signals">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
+  <a href="#example-handling-sigint" class="md-nav__link">
     <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
+      Example: Handling SIGINT
     </span>
   </a>
   
@@ -1212,19 +1137,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
+  <a href="#blocking-and-ignoring-signals" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
+      Blocking and Ignoring Signals
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
+    <nav class="md-nav" aria-label="Blocking and Ignoring Signals">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
+  <a href="#blocking-example-with-sigprocmask" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful C Functions
+      Blocking Example with sigprocmask()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignoring-a-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ignoring a Signal
     </span>
   </a>
   
@@ -1236,9 +1170,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
+  <a href="#useful-tools-and-debugging" class="md-nav__link">
     <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
+      Useful Tools and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Tools and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shell-example-with-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shell Example with trap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
     </span>
   </a>
   
@@ -1247,7 +1205,7 @@
         <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 Summary
+      Summary
     </span>
   </a>
   
@@ -1272,182 +1230,183 @@
   
 
 
-<h1 id="project-1-minitar-a-posix-compatible-archive-utility"><strong>Project 1: minitar - A Posix-Compatible Archive Utility</strong></h1>
-<h2 id="source">Source</h2>
-<p>This project was taken from CSCI 4061 Intro to Operating Systems at the University of Minnesota - Twin Cities [Fall 2024], taught by <a href="https://cse.umn.edu/cs/jack-kolb"><strong>Jack Kolb</strong></a>.</p>
-<h2 id="starter-code">📦 Starter Code</h2>
-<p>You can download the starter code here:
-<a href="../proj1-code.zip">proj1-code.zip</a></p>
-<p>Save the starter code under your <code>csci4061</code> directory, which should now look like this:</p>
-<div class="highlight"><pre><span></span><code>csci4061/
-├── labs/
-│   ├── lab01-code/
-│   └── ...
-└── projects/
-    └── proj1-code/
-</code></pre></div>
-<hr />
-<h2 id="how-to-succeed-on-this-project">✅ How to Succeed on This Project</h2>
+<h1 id="chapter-5-signals"><strong>Chapter 5: Signals</strong></h1>
+<h2 id="overview">Overview</h2>
+<p>This chapter introduces <strong>signals</strong>, a fundamental mechanism in Unix-based operating systems for <strong>inter-process communication (IPC)</strong> and <strong>asynchronous event handling</strong>. Signals are software interrupts delivered to a process to notify it of events such as exceptions, user input, or explicit inter-process messages.</p>
+<p>Key topics covered in this chapter include:</p>
 <ul>
-<li><strong>Read the spec thoroughly.</strong> TAs may decline to help if you haven’t.</li>
-<li><strong>Understand the starter code.</strong> Know what each file does.</li>
-<li><strong>Test independently.</strong> Don’t rely solely on automated tests.</li>
-<li><strong>Expect bugs.</strong> Stay patient and persistent.</li>
-<li><strong>Start early.</strong> Avoid deadline pressure.</li>
-<li><strong>Ask questions publicly on Piazza.</strong> This helps everyone.</li>
-<li><strong>Know the late policy.</strong> No submissions accepted more than 48 hours late.</li>
+<li>What signals are and how they work</li>
+<li>Common standard signals</li>
+<li>Sending and receiving signals</li>
+<li>Signal handlers and default actions</li>
+<li>Blocking, ignoring, and handling signals</li>
+<li>Practical examples and best practices</li>
 </ul>
-<hr />
-<h2 id="introduction">🧭 Introduction</h2>
-<p>In this project, you will implement a simplified version of the Unix <code>tar</code> utility called <code>minitar</code>. You’ll work with C and the <code>stdio</code> library to:
-- Practice file I/O
-- Explore systems programming techniques
-- Build a Posix-compliant archive tool</p>
-<p>Your implementation will be able to:
-- Create and append to archives
-- Extract files
-- Interoperate with <code>tar</code></p>
-<hr />
-<h3 id="makefile-commands">💻 Makefile Commands</h3>
-<div class="highlight"><pre><span></span><code>make                # Compile minitar
-make clean          # Remove compiled files
-make clean-tests    # Remove test output
-make zip            # Create Gradescope zip
-make test           # Run all test cases
-make test testnum=5 # Run specific test
-</code></pre></div>
-<hr />
-<h2 id="manual-testing-advice">🧪 Manual Testing Advice</h2>
+<h2 id="what-are-signals">What Are Signals?</h2>
+<p>A <strong>signal</strong> is a limited form of inter-process communication used in Unix systems. It notifies a process that a specific event has occurred. Signals can be generated by the kernel, the user, or another process.</p>
+<h3 id="characteristics-of-signals">Characteristics of Signals:</h3>
 <ul>
-<li>Use your own test cases</li>
-<li>View archives using:
-<div class="highlight"><pre><span></span><code>xxd<span class="w"> </span>test.tar<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
-</code></pre></div></li>
-<li>Use <code>tar</code> for interoperability comparison</li>
-<li>Install <code>xxd</code> in Docker:
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
-apt<span class="w"> </span>install<span class="w"> </span>xxd
-</code></pre></div></li>
+<li><strong>Asynchronous</strong>: Signals can be delivered at any time.</li>
+<li><strong>Lightweight</strong>: No data payload, just an integer ID.</li>
+<li><strong>Limited scope</strong>: Signals carry no additional information beyond their identifier.</li>
 </ul>
-<hr />
-<h2 id="starter-code-files">🧰 Starter Code Files</h2>
+<p><img alt="Signal Concept" src="img/signal_overview.png" /></p>
+<h2 id="common-signals">Common Signals</h2>
+<p>Some of the most frequently used signals include:</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
-<th>Notes</th>
+<th>Signal</th>
+<th>Name</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Makefile</code></td>
-<td>Build/tests</td>
-<td>Do not modify</td>
+<td>1</td>
+<td><code>SIGHUP</code></td>
+<td>Hangup detected</td>
 </tr>
 <tr>
-<td><code>file_list.h</code> / <code>file_list.c</code></td>
-<td>Linked list support</td>
-<td>Do not modify</td>
+<td>2</td>
+<td><code>SIGINT</code></td>
+<td>Interrupt from keyboard (Ctrl+C)</td>
 </tr>
 <tr>
-<td><code>minitar.h</code></td>
-<td>Archive headers</td>
-<td>Do not modify</td>
+<td>9</td>
+<td><code>SIGKILL</code></td>
+<td>Kill signal (cannot be caught)</td>
 </tr>
 <tr>
-<td><code>minitar.c</code></td>
-<td>Archive operations</td>
-<td><strong>EDIT THIS</strong></td>
+<td>15</td>
+<td><code>SIGTERM</code></td>
+<td>Termination signal</td>
 </tr>
 <tr>
-<td><code>minitar_main.c</code></td>
-<td>CLI logic</td>
-<td><strong>EDIT THIS</strong></td>
+<td>17</td>
+<td><code>SIGCHLD</code></td>
+<td>Child process terminated</td>
 </tr>
 <tr>
-<td><code>testius</code></td>
-<td>Test runner</td>
-<td>Do not modify</td>
+<td>18</td>
+<td><code>SIGCONT</code></td>
+<td>Continue process execution</td>
 </tr>
 <tr>
-<td><code>test_cases/</code></td>
-<td>Sample inputs</td>
-<td>Do not modify</td>
+<td>19</td>
+<td><code>SIGSTOP</code></td>
+<td>Stop (cannot be caught)</td>
 </tr>
 </tbody>
 </table>
-<p>Only modify the files marked as <strong>EDIT</strong>.</p>
-<hr />
-<h2 id="archive-format-overview">📦 Archive Format Overview</h2>
-<ul>
-<li>Each archive is made of 512-byte blocks</li>
-<li>Each file: 1 header block + content blocks</li>
-<li>Ends with <strong>two zero blocks</strong></li>
-</ul>
-<h3 id="tar_header-struct">tar_header Struct</h3>
-<p>Defined in <code>minitar.h</code>, it uses <strong>octal-encoded strings</strong> for numeric fields.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w">  </span><span class="c1">// octal, null-terminated string</span>
-</code></pre></div>
-<p>Use <code>fill_tar_header()</code> to generate headers.</p>
-<hr />
-<h2 id="archive-operations">🚀 Archive Operations</h2>
-<h3 id="create">Create</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>file1<span class="w"> </span>file2
-</code></pre></div>
-- Write header and data for each file
-- Add two-block footer</p>
-<h3 id="append">Append</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-a<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>newfile
-</code></pre></div>
-- Remove footer with <code>remove_trailing_bytes()</code>
-- Append new headers/data
-- Add new footer</p>
-<h3 id="list">List</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>archive.tar
-</code></pre></div>
-- Print name of each file in archive
-- Stop when footer blocks are reached</p>
-<h3 id="update">Update</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-u<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>existingfile
-</code></pre></div>
-- Like append, but must already exist in archive
-- Error message if not:
-<div class="highlight"><pre><span></span><code>Error: One or more of the specified files is not already present in archive.
+<p>To view all signals:
+<div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-l
 </code></pre></div></p>
-<h3 id="extract">Extract</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>archive.tar
+<h2 id="sending-signals">Sending Signals</h2>
+<p>Signals can be sent using system calls or shell commands.</p>
+<h3 id="shell-command">Shell Command</h3>
+<p><div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-SIGTERM<span class="w"> </span>&lt;pid&gt;
 </code></pre></div>
-- Write out each member file
-- Only extract latest version if duplicates exist</p>
-<hr />
-<h2 id="tips-assumptions">💡 Tips &amp; Assumptions</h2>
+Or using signal numbers:
+<div class="highlight"><pre><span></span><code><span class="nb">kill</span><span class="w"> </span>-15<span class="w"> </span>&lt;pid&gt;
+</code></pre></div></p>
+<h3 id="programmatically-in-c">Programmatically (in C)</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="n">kill</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">SIGTERM</span><span class="p">);</span><span class="w">  </span><span class="c1">// Sends SIGTERM to the process with given PID</span>
+</code></pre></div>
+<h2 id="handling-signals">Handling Signals</h2>
+<p>By default, each signal has an associated <strong>default action</strong>, which might terminate the process, ignore the signal, or stop/resume the process.</p>
+<p>Programs can override these defaults by <strong>installing a signal handler</strong> using the <code>signal()</code> or <code>sigaction()</code> system call.</p>
+<h3 id="example-handling-sigint">Example: Handling SIGINT</h3>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">handle_sigint</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Caught signal %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sig</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">handle_sigint</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Running...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+Run the program and press <code>Ctrl+C</code> to see the handler in action.</p>
+<p><img alt="Signal Handler Flow" src="img/signal_handler_flow.png" /></p>
+<h2 id="blocking-and-ignoring-signals">Blocking and Ignoring Signals</h2>
+<p>Processes can choose to <strong>block</strong> or <strong>ignore</strong> specific signals. Blocking a signal prevents it from being delivered until it is unblocked.</p>
+<h3 id="blocking-example-with-sigprocmask">Blocking Example with <code>sigprocmask()</code></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+
+<span class="kt">sigset_t</span><span class="w"> </span><span class="n">set</span><span class="p">;</span>
+<span class="n">sigemptyset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">set</span><span class="p">);</span>
+<span class="n">sigaddset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">set</span><span class="p">,</span><span class="w"> </span><span class="n">SIGINT</span><span class="p">);</span>
+<span class="n">sigprocmask</span><span class="p">(</span><span class="n">SIG_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">set</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w">  </span><span class="c1">// Block SIGINT</span>
+</code></pre></div>
+<h3 id="ignoring-a-signal">Ignoring a Signal</h3>
+<div class="highlight"><pre><span></span><code><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">SIG_IGN</span><span class="p">);</span><span class="w">  </span><span class="c1">// Ignore SIGINT</span>
+</code></pre></div>
+<h2 id="useful-tools-and-debugging">Useful Tools and Debugging</h2>
 <ul>
-<li>No nested directory support</li>
-<li>Use high-level I/O (<code>fopen</code>, not <code>open</code>)</li>
-<li>Use <code>memset()</code>, <code>fseek()</code>, <code>ftell()</code></li>
-<li>Leverage <code>fill_tar_header()</code> and <code>file_list</code> utilities</li>
+<li><code>ps -l</code>: Shows signal masks of processes</li>
+<li><code>kill</code>: Sends signals to processes</li>
+<li><code>trap</code>: Shell builtin for signal handling in scripts</li>
 </ul>
-<h3 id="useful-c-functions">Useful C Functions</h3>
+<h3 id="shell-example-with-trap">Shell Example with <code>trap</code></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">trap</span><span class="w"> </span><span class="s2">&quot;echo Caught SIGINT&quot;</span><span class="w"> </span>INT
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+<h2 id="interactive-quiz">Interactive Quiz</h2>
+<p>Test your understanding of signals:</p>
+<ol>
+<li>
+<p>What happens when a process receives <code>SIGKILL</code>?</p>
+<p><strong>A</strong>. It handles the signal with a custom function<br>
+<strong>B</strong>. It is forcibly terminated by the OS<br>
+<strong>C</strong>. It ignores the signal<br></p>
+</li>
+</ol>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. <code>SIGKILL</code> cannot be caught or ignored; it forcibly terminates the process.</p>
+</details>
+<ol>
+<li>
+<p>Which system call installs a signal handler in C?</p>
+<p><strong>A</strong>. <code>send()</code><br>
+<strong>B</strong>. <code>signal()</code><br>
+<strong>C</strong>. <code>listen()</code><br></p>
+</li>
+</ol>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. <code>signal()</code> (or <code>sigaction()</code> for more control) installs a signal handler.</p>
+</details>
+<ol>
+<li>
+<p>What does the <code>trap</code> command do in shell scripting?</p>
+<p><strong>A</strong>. Blocks all signals<br>
+<strong>B</strong>. Kills background processes<br>
+<strong>C</strong>. Defines actions to take when receiving specific signals<br></p>
+</li>
+</ol>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>C</strong>. <code>trap</code> lets you handle signals like <code>SIGINT</code> in shell scripts.</p>
+</details>
+<h2 id="summary">Summary</h2>
 <ul>
-<li><code>fread()</code>, <code>fwrite()</code></li>
-<li><code>ftell()</code>, <code>fseek()</code></li>
-<li><code>sscanf()</code> for octal parsing</li>
-<li><code>perror()</code> for error reporting</li>
+<li>Signals provide lightweight IPC for notifying processes of events.</li>
+<li>Signals like <code>SIGINT</code>, <code>SIGTERM</code>, and <code>SIGKILL</code> are commonly used to control processes.</li>
+<li>Processes can handle, ignore, or block signals using system calls.</li>
+<li>Shells also support signal handling using the <code>trap</code> command.</li>
 </ul>
+<p>Signals are a critical building block in Unix systems for responsive, event-driven behavior. In the next chapter, we’ll explore <strong>Pipes</strong>, another mechanism for process communication that allows data exchange between processes.</p>
 <hr />
-<h2 id="strategy-hints">🧠 Strategy &amp; Hints</h2>
-<ul>
-<li><strong>Reuse logic</strong> between operations</li>
-<li><strong>Write helpers</strong> for block iteration</li>
-<li><strong>Start early</strong>, debug often, test manually</li>
-<li>Avoid mixing <code>fopen()</code> and <code>open()</code></li>
-</ul>
-<hr />
-<h2 id="summary">📌 Summary</h2>
-<p>This project is your first big opportunity to apply <strong>systems-level thinking</strong> and build a utility that mirrors a well-known Unix tool. You'll practice file I/O, struct management, and command-line parsing — and develop habits that will serve you in all future OS coursework.</p>
-<hr />
-<p><strong>Ready to begin? Download the <a href="../proj1-code.zip">starter code</a> and get coding!</strong></p>
+<p><em>This chapter is based on material from "Advanced Programming in the UNIX Environment, Third Edition, by W. Richard Stevens and Stephen A. Rago, 2013."</em></p>
 
 
 

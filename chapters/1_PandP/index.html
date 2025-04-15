@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../chapters/10_threads/">
+        <link rel="prev" href="../../cd/">
       
       
-        <link rel="next" href="../../sims/learning-graph/">
+        <link rel="next" href="../2_io/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Project 1 - Intelligent Textbook v1</title>
+        <title>Programs and Processes - Intelligent Textbook v1</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-1-minitar-a-posix-compatible-archive-utility" class="md-skip">
+        <a href="#chapter-1-programs-and-processes" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project 1
+              Programs and Processes
             
           </span>
         </div>
@@ -254,17 +254,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -279,7 +281,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             List of Chapters
@@ -290,10 +292,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../chapters/1_PandP/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Programs and Processes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -303,6 +326,152 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programs-vs-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programs vs. Processes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programs vs. Processes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process States
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-unix-process-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The UNIX Process Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive MicroSim
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactive MicroSim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-creating-a-new-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Creating a New Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-memory-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Memory Layout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-executing-a-new-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Executing a New Program
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Termination
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Process Termination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-waiting-for-child-process-termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Waiting for Child Process Termination
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -315,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/2_io/" class="md-nav__link">
+      <a href="../2_io/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -337,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/3_fs/" class="md-nav__link">
+      <a href="../3_fs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -359,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/4_vm/" class="md-nav__link">
+      <a href="../4_vm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/5_signals/" class="md-nav__link">
+      <a href="../5_signals/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/6_pipes/" class="md-nav__link">
+      <a href="../6_pipes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/7_sm/" class="md-nav__link">
+      <a href="../7_sm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -447,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/8_SandC/" class="md-nav__link">
+      <a href="../8_SandC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/9_tcpudp/" class="md-nav__link">
+      <a href="../9_tcpudp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../chapters/10_threads/" class="md-nav__link">
+      <a href="../10_threads/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -517,19 +686,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -544,7 +711,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Projects
@@ -555,31 +722,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Project 1
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../projects/proj1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -589,221 +735,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Source
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Starter Code
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      💻 Makefile Commands
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧪 Manual Testing Advice
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧰 Starter Code Files
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
-    <span class="md-ellipsis">
-      tar_header Struct
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Archive Operations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful C Functions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1059,46 +990,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#source" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Source
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter-code" class="md-nav__link">
+  <a href="#programs-vs-processes" class="md-nav__link">
     <span class="md-ellipsis">
-      📦 Starter Code
+      Programs vs. Processes
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-succeed-on-this-project" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ How to Succeed on This Project
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Introduction
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introduction">
+    <nav class="md-nav" aria-label="Programs vs. Processes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#makefile-commands" class="md-nav__link">
+  <a href="#process-states" class="md-nav__link">
     <span class="md-ellipsis">
-      💻 Makefile Commands
+      Process States
     </span>
   </a>
   
@@ -1110,37 +1023,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-testing-advice" class="md-nav__link">
+  <a href="#the-unix-process-model" class="md-nav__link">
     <span class="md-ellipsis">
-      🧪 Manual Testing Advice
+      The UNIX Process Model
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter-code-files" class="md-nav__link">
+  <a href="#interactive-microsim" class="md-nav__link">
     <span class="md-ellipsis">
-      🧰 Starter Code Files
+      Interactive MicroSim
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#archive-format-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      📦 Archive Format Overview
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📦 Archive Format Overview">
+    <nav class="md-nav" aria-label="Interactive MicroSim">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tar_header-struct" class="md-nav__link">
+  <a href="#example-creating-a-new-process" class="md-nav__link">
     <span class="md-ellipsis">
-      tar_header Struct
+      Example: Creating a New Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-memory-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Memory Layout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-executing-a-new-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Executing a New Program
     </span>
   </a>
   
@@ -1152,55 +1074,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#archive-operations" class="md-nav__link">
+  <a href="#process-termination" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Archive Operations
+      Process Termination
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Archive Operations">
+    <nav class="md-nav" aria-label="Process Termination">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create" class="md-nav__link">
+  <a href="#example-waiting-for-child-process-termination" class="md-nav__link">
     <span class="md-ellipsis">
-      Create
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    <span class="md-ellipsis">
-      Append
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    <span class="md-ellipsis">
-      List
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extract" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extract
+      Example: Waiting for Child Process Termination
     </span>
   </a>
   
@@ -1212,33 +1098,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-assumptions" class="md-nav__link">
+  <a href="#interactive-quiz" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Tips &amp; Assumptions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="💡 Tips & Assumptions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#useful-c-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful C Functions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#strategy-hints" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Strategy &amp; Hints
+      Interactive Quiz
     </span>
   </a>
   
@@ -1247,7 +1109,7 @@
         <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 Summary
+      Summary
     </span>
   </a>
   
@@ -1272,182 +1134,147 @@
   
 
 
-<h1 id="project-1-minitar-a-posix-compatible-archive-utility"><strong>Project 1: minitar - A Posix-Compatible Archive Utility</strong></h1>
-<h2 id="source">Source</h2>
-<p>This project was taken from CSCI 4061 Intro to Operating Systems at the University of Minnesota - Twin Cities [Fall 2024], taught by <a href="https://cse.umn.edu/cs/jack-kolb"><strong>Jack Kolb</strong></a>.</p>
-<h2 id="starter-code">📦 Starter Code</h2>
-<p>You can download the starter code here:
-<a href="../proj1-code.zip">proj1-code.zip</a></p>
-<p>Save the starter code under your <code>csci4061</code> directory, which should now look like this:</p>
-<div class="highlight"><pre><span></span><code>csci4061/
-├── labs/
-│   ├── lab01-code/
-│   └── ...
-└── projects/
-    └── proj1-code/
-</code></pre></div>
-<hr />
-<h2 id="how-to-succeed-on-this-project">✅ How to Succeed on This Project</h2>
+<h1 id="chapter-1-programs-and-processes"><strong>Chapter 1: Programs and Processes</strong></h1>
+<h2 id="overview">Overview</h2>
+<p>This chapter introduces fundamental concepts related to programs and processes in Unix-based operating systems. Understanding the distinction between a program and a process is crucial for systems programming, as it forms the basis for process control, execution, and resource management in an operating system.</p>
+<p>A <strong>program</strong> is a passive entity that consists of executable code stored on disk. When a program is executed, the operating system creates a <strong>process</strong>, which is an active instance of that program with its own memory space, execution context, and system resources.</p>
+<p>Key topics covered in this chapter include:
+- The difference between programs and processes
+- The UNIX process model
+- Process creation and termination
+- Process memory layout
+- System calls related to process management</p>
+<h2 id="programs-vs-processes">Programs vs. Processes</h2>
+<p>A program is a set of instructions stored in an executable file, while a process is an executing instance of a program. Multiple processes can be running from the same program, each with its own process ID (PID) and execution context. The operating system manages these processes, ensuring efficient CPU scheduling and resource allocation.</p>
+<h3 id="process-states">Process States</h3>
+<p>A process transitions through several states during its execution:</p>
+<p><img alt="Process States Diagram" src="img/process_states.png" /></p>
+<ol>
+<li><strong>New</strong> – The process is being created.</li>
+<li><strong>Ready</strong> – The process is waiting to be assigned to a CPU.</li>
+<li><strong>Running</strong> – The process is actively executing instructions.</li>
+<li><strong>Blocked (Waiting)</strong> – The process is waiting for an event (e.g., I/O completion).</li>
+<li><strong>Terminated</strong> – The process has finished execution or has been explicitly killed.</li>
+</ol>
+<h2 id="the-unix-process-model">The UNIX Process Model</h2>
+<p>UNIX systems follow a hierarchical process model where every process (except the initial process, often <code>init</code> or <code>systemd</code>) is created by another process. This relationship forms a <strong>process tree</strong>, where each process has a parent and may create child processes.</p>
+<p><img alt="Process Tree Example" src="img/process_tree.jpg" /></p>
+<h2 id="interactive-microsim">Interactive MicroSim</h2>
+<p>Dive deeper into how <code>fork()</code>, <code>exec()</code>, <code>wait()</code>, and <code>exit()</code> affect the process tree with this interactive MicroSim:</p>
+<p>👉 <a href="../../sims/process-tree/main.html">Launch the Process Tree Simulator</a></p>
+<p>The primary system calls for process management in UNIX include:</p>
 <ul>
-<li><strong>Read the spec thoroughly.</strong> TAs may decline to help if you haven’t.</li>
-<li><strong>Understand the starter code.</strong> Know what each file does.</li>
-<li><strong>Test independently.</strong> Don’t rely solely on automated tests.</li>
-<li><strong>Expect bugs.</strong> Stay patient and persistent.</li>
-<li><strong>Start early.</strong> Avoid deadline pressure.</li>
-<li><strong>Ask questions publicly on Piazza.</strong> This helps everyone.</li>
-<li><strong>Know the late policy.</strong> No submissions accepted more than 48 hours late.</li>
+<li><code>fork()</code>: Creates a new child process by duplicating the parent.<br></li>
+<li><code>exec()</code>: Replaces the current process image with a new program.<br></li>
+<li><code>wait()</code>: Suspends execution of the parent until a child process terminates.<br></li>
+<li><code>exit()</code>: Terminates a process and returns a status to its parent.<br></li>
 </ul>
-<hr />
-<h2 id="introduction">🧭 Introduction</h2>
-<p>In this project, you will implement a simplified version of the Unix <code>tar</code> utility called <code>minitar</code>. You’ll work with C and the <code>stdio</code> library to:
-- Practice file I/O
-- Explore systems programming techniques
-- Build a Posix-compliant archive tool</p>
-<p>Your implementation will be able to:
-- Create and append to archives
-- Extract files
-- Interoperate with <code>tar</code></p>
-<hr />
-<h3 id="makefile-commands">💻 Makefile Commands</h3>
-<div class="highlight"><pre><span></span><code>make                # Compile minitar
-make clean          # Remove compiled files
-make clean-tests    # Remove test output
-make zip            # Create Gradescope zip
-make test           # Run all test cases
-make test testnum=5 # Run specific test
+<h3 id="example-creating-a-new-process">Example: Creating a New Process</h3>
+<p>The <code>fork()</code> system call is fundamental in UNIX process creation. Below is a basic example in C:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child Process: PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Parent Process: PID = %d, Child PID = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">(),</span><span class="w"> </span><span class="n">pid</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-<hr />
-<h2 id="manual-testing-advice">🧪 Manual Testing Advice</h2>
+<h3 id="process-memory-layout">Process Memory Layout</h3>
+<p>Each process has a structured memory layout consisting of:</p>
+<p><img alt="Process Memory Layout" src="img/memory_layout.png" /></p>
 <ul>
-<li>Use your own test cases</li>
-<li>View archives using:
-<div class="highlight"><pre><span></span><code>xxd<span class="w"> </span>test.tar<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
-</code></pre></div></li>
-<li>Use <code>tar</code> for interoperability comparison</li>
-<li>Install <code>xxd</code> in Docker:
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
-apt<span class="w"> </span>install<span class="w"> </span>xxd
-</code></pre></div></li>
+<li><strong>Text segment</strong>: The executable code.</li>
+<li><strong>Data segment</strong>: Global and static variables.</li>
+<li><strong>BSS (Block Started by Symbol)</strong>: Uninitialized global and static variables.</li>
+<li><strong>Heap</strong>: Dynamically allocated memory.</li>
+<li><strong>Stack</strong>: Function call stack, containing local variables and return addresses.</li>
+<li><strong>Kernel space</strong>: The portion of memory reserved for the operating system, which user processes do not have direct access to.</li>
 </ul>
-<hr />
-<h2 id="starter-code-files">🧰 Starter Code Files</h2>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Purpose</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Makefile</code></td>
-<td>Build/tests</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>file_list.h</code> / <code>file_list.c</code></td>
-<td>Linked list support</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>minitar.h</code></td>
-<td>Archive headers</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>minitar.c</code></td>
-<td>Archive operations</td>
-<td><strong>EDIT THIS</strong></td>
-</tr>
-<tr>
-<td><code>minitar_main.c</code></td>
-<td>CLI logic</td>
-<td><strong>EDIT THIS</strong></td>
-</tr>
-<tr>
-<td><code>testius</code></td>
-<td>Test runner</td>
-<td>Do not modify</td>
-</tr>
-<tr>
-<td><code>test_cases/</code></td>
-<td>Sample inputs</td>
-<td>Do not modify</td>
-</tr>
-</tbody>
-</table>
-<p>Only modify the files marked as <strong>EDIT</strong>.</p>
-<hr />
-<h2 id="archive-format-overview">📦 Archive Format Overview</h2>
+<h3 id="example-executing-a-new-program">Example: Executing a New Program</h3>
+<p>The <code>exec()</code> family of functions replaces a running process with a new program:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Executing ls command...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">execl</span><span class="p">(</span><span class="s">&quot;/bin/ls&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ls&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-l&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="process-termination">Process Termination</h2>
+<p>Processes can terminate in various ways:</p>
 <ul>
-<li>Each archive is made of 512-byte blocks</li>
-<li>Each file: 1 header block + content blocks</li>
-<li>Ends with <strong>two zero blocks</strong></li>
+<li><strong>Normal termination</strong>: The process completes execution and calls <code>exit()</code>.<br></li>
+<li><strong>Signal termination</strong>: The process is terminated by a signal (e.g., <code>SIGKILL</code>).<br></li>
+<li><strong>Parent-initiated termination</strong>: A parent process can terminate its child using <code>kill()</code>.<br></li>
 </ul>
-<h3 id="tar_header-struct">tar_header Struct</h3>
-<p>Defined in <code>minitar.h</code>, it uses <strong>octal-encoded strings</strong> for numeric fields.</p>
-<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">size</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span><span class="w">  </span><span class="c1">// octal, null-terminated string</span>
+<h3 id="example-waiting-for-child-process-termination">Example: Waiting for Child Process Termination</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/wait.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child Process</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span><span class="w">  </span><span class="c1">// Parent waits for child to finish</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Child Process Terminated</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>Use <code>fill_tar_header()</code> to generate headers.</p>
-<hr />
-<h2 id="archive-operations">🚀 Archive Operations</h2>
-<h3 id="create">Create</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-c<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>file1<span class="w"> </span>file2
-</code></pre></div>
-- Write header and data for each file
-- Add two-block footer</p>
-<h3 id="append">Append</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-a<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>newfile
-</code></pre></div>
-- Remove footer with <code>remove_trailing_bytes()</code>
-- Append new headers/data
-- Add new footer</p>
-<h3 id="list">List</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-t<span class="w"> </span>-f<span class="w"> </span>archive.tar
-</code></pre></div>
-- Print name of each file in archive
-- Stop when footer blocks are reached</p>
-<h3 id="update">Update</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-u<span class="w"> </span>-f<span class="w"> </span>archive.tar<span class="w"> </span>existingfile
-</code></pre></div>
-- Like append, but must already exist in archive
-- Error message if not:
-<div class="highlight"><pre><span></span><code>Error: One or more of the specified files is not already present in archive.
-</code></pre></div></p>
-<h3 id="extract">Extract</h3>
-<p><div class="highlight"><pre><span></span><code>./minitar<span class="w"> </span>-x<span class="w"> </span>-f<span class="w"> </span>archive.tar
-</code></pre></div>
-- Write out each member file
-- Only extract latest version if duplicates exist</p>
-<hr />
-<h2 id="tips-assumptions">💡 Tips &amp; Assumptions</h2>
+<h2 id="interactive-quiz">Interactive Quiz</h2>
+<p>Test your understanding of process management concepts with this short quiz:</p>
+<ol>
+<li>
+<p>What is the main difference between a program and a process?</p>
+<p><strong>A</strong>. A program is running, while a process is stored on disk.<br>
+<strong>B</strong>. A program is a passive entity, while a process is an executing instance of a program.<br>
+<strong>C</strong>. A program always creates exactly one process.<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. A program is just a file containing executable code, but it does nothing on its own. When a program is executed, the operating system creates a process, which includes an allocated memory space, registers, and other runtime resources.</p>
+</details>
+</li>
+<li>
+<p>Which system call is used to create a new process in UNIX?</p>
+<p><strong>A</strong>. <code>exec()</code><br>
+<strong>B</strong>. <code>wait()</code><br>
+<strong>C</strong>. <code>fork()</code><br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>C</strong>. The <code>fork()</code> system call creates a new child process by duplicating the parent’s memory space. After a <code>fork()</code>, two processes exist: the parent and the newly created child.</p>
+</details>
+</li>
+<li>
+<p>What happens when a parent process calls <code>wait()</code>?</p>
+<p><strong>A</strong>. It immediately terminates.<br>
+<strong>B</strong>. It waits for a child process to complete execution.<br>
+<strong>C</strong>. It duplicates itself.<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. The <code>wait()</code> system call suspends the parent process until one of its child processes terminates, allowing the parent to retrieve the child’s exit status.</p>
+</details>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
 <ul>
-<li>No nested directory support</li>
-<li>Use high-level I/O (<code>fopen</code>, not <code>open</code>)</li>
-<li>Use <code>memset()</code>, <code>fseek()</code>, <code>ftell()</code></li>
-<li>Leverage <code>fill_tar_header()</code> and <code>file_list</code> utilities</li>
+<li>A <strong>program</strong> is an executable file, while a <strong>process</strong> is a running instance of a program.</li>
+<li>Processes undergo state transitions such as <strong>ready, running, blocked, and terminated</strong>.</li>
+<li>UNIX uses a <strong>hierarchical process model</strong>, where processes are created using <code>fork()</code> and executed with <code>exec()</code>.</li>
+<li>Process memory layout includes <strong>text, data, heap, and stack</strong> segments.</li>
+<li>Processes terminate normally with <code>exit()</code> or via signals from other processes.</li>
 </ul>
-<h3 id="useful-c-functions">Useful C Functions</h3>
-<ul>
-<li><code>fread()</code>, <code>fwrite()</code></li>
-<li><code>ftell()</code>, <code>fseek()</code></li>
-<li><code>sscanf()</code> for octal parsing</li>
-<li><code>perror()</code> for error reporting</li>
-</ul>
+<p>Understanding these concepts is essential for working with process management in UNIX environments. The next chapter will delve deeper into <strong>inter-process communication (IPC)</strong> mechanisms such as signals, pipes, and shared memory.</p>
 <hr />
-<h2 id="strategy-hints">🧠 Strategy &amp; Hints</h2>
-<ul>
-<li><strong>Reuse logic</strong> between operations</li>
-<li><strong>Write helpers</strong> for block iteration</li>
-<li><strong>Start early</strong>, debug often, test manually</li>
-<li>Avoid mixing <code>fopen()</code> and <code>open()</code></li>
-</ul>
-<hr />
-<h2 id="summary">📌 Summary</h2>
-<p>This project is your first big opportunity to apply <strong>systems-level thinking</strong> and build a utility that mirrors a well-known Unix tool. You'll practice file I/O, struct management, and command-line parsing — and develop habits that will serve you in all future OS coursework.</p>
-<hr />
-<p><strong>Ready to begin? Download the <a href="../proj1-code.zip">starter code</a> and get coding!</strong></p>
+<p><em>This chapter is based on material from "Advanced Programming in the UNIX Environment, Third Edition, by W. Richard Stevens and Stephen A. Rago, 2013."</em></p>
 
 
 

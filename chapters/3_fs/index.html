@@ -1,0 +1,1559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2_io/">
+      
+      
+        <link rel="next" href="../4_vm/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>File Systems - Intelligent Textbook v1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-3-file-systems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intelligent Textbook v1" class="md-header__button md-logo" aria-label="Intelligent Textbook v1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intelligent Textbook v1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File Systems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/btlepak/i-book-v1" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intelligent Textbook v1" class="md-nav__button md-logo" aria-label="Intelligent Textbook v1" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Intelligent Textbook v1
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/btlepak/i-book-v1" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    List of Chapters
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            List of Chapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_PandP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programs and Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    I/O Basics & Redirection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    File Systems
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    File Systems
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-structure-and-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Structure and Organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File System Structure and Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-components-of-a-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components of a File System:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-attributes-and-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Attributes and Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Attributes and Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-file-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing File Metadata
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-hierarchy-and-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory Hierarchy and Navigation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Hierarchy and Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Directories:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation Commands:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-files-are-stored-and-accessed" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Files Are Stored and Accessed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Files Are Stored and Accessed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-storage-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Storage Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-types-in-unix" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Types in Unix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-calls-for-file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Calls for File Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Calls for File Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-reading-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Reading a File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions-and-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Permissions and Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Permissions and Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-and-modifying-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing and Modifying Permissions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_vm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_signals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_pipes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pipes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_sm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shared Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_SandC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sockets and Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_tcpudp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TCP & UDP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_threads/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Threads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/proj1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sims
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sims
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/learning-graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Learning Graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/wordcloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Word Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/process-tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process Tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/file-system-access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File System Access
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sims/virtual-memory-mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Memory Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-structure-and-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Structure and Organization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File System Structure and Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-components-of-a-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components of a File System:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-attributes-and-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Attributes and Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Attributes and Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-file-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing File Metadata
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-hierarchy-and-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory Hierarchy and Navigation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Hierarchy and Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Directories:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation Commands:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-files-are-stored-and-accessed" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Files Are Stored and Accessed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Files Are Stored and Accessed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-storage-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Storage Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-types-in-unix" class="md-nav__link">
+    <span class="md-ellipsis">
+      File System Types in Unix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-calls-for-file-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Calls for File Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Calls for File Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-reading-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Reading a File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions-and-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Permissions and Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Permissions and Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-and-modifying-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing and Modifying Permissions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Quiz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-3-file-systems"><strong>Chapter 3: File Systems</strong></h1>
+<h2 id="overview">Overview</h2>
+<p>This chapter explores the fundamentals of file systems in Unix-based operating systems, covering their structure, organization, and essential system calls. File systems are critical for data storage, retrieval, and management, providing a structured way to store and access files efficiently.</p>
+<p>Key topics covered in this chapter include:</p>
+<ul>
+<li>File system structure and organization</li>
+<li>File attributes and metadata</li>
+<li>Directory hierarchy and navigation</li>
+<li>File system types in Unix</li>
+<li>How files are stored and accessed</li>
+<li>System calls for file operations</li>
+<li>File permissions and access control</li>
+</ul>
+<h2 id="file-system-structure-and-organization">File System Structure and Organization</h2>
+<p>A <strong>file system</strong> organizes data into files and directories, providing a hierarchical structure for efficient storage and retrieval. Unix file systems follow a <strong>tree-like structure</strong>, starting from the root directory (<code>/</code>).</p>
+<h3 id="key-components-of-a-file-system">Key Components of a File System:</h3>
+<ul>
+<li><strong>Files</strong>: The basic unit of storage, containing data or executable code.</li>
+<li><strong>Directories</strong>: Containers that group files and other directories.</li>
+<li><strong>Inodes</strong>: Data structures that store metadata about files.</li>
+<li><strong>Superblock</strong>: Contains metadata about the file system, including its size and structure.</li>
+<li><strong>Blocks</strong>: The smallest units of storage allocated for files.</li>
+</ul>
+<h2 id="file-attributes-and-metadata">File Attributes and Metadata</h2>
+<p>Each file in a Unix system has associated metadata stored in an <strong>inode</strong>. This metadata includes:
+- <strong>File type</strong> (regular file, directory, symbolic link, etc.)
+- <strong>Permissions</strong> (read, write, execute)
+- <strong>Owner and group</strong>
+- <strong>Size (in bytes)</strong>
+- <strong>Timestamps</strong> (creation, modification, and access times)
+- <strong>Number of hard links</strong></p>
+<h3 id="viewing-file-metadata">Viewing File Metadata</h3>
+<p>To view file attributes, use the <code>ls -l</code> command:
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>myfile.txt
+</code></pre></div>
+Example File Metadata:</p>
+<p><img alt="File Metadata Example" src="img/file_metadata.png" /></p>
+<h2 id="directory-hierarchy-and-navigation">Directory Hierarchy and Navigation</h2>
+<p>Unix file systems follow a hierarchical structure with a <strong>single root directory</strong> (<code>/</code>).</p>
+<p><img alt="File System Structure" src="img/file_system_structure.png" /></p>
+<h3 id="important-directories">Important Directories:</h3>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Root directory, contains all files and directories</td>
+</tr>
+<tr>
+<td><code>/home/</code></td>
+<td>User home directories</td>
+</tr>
+<tr>
+<td><code>/etc/</code></td>
+<td>System configuration files</td>
+</tr>
+<tr>
+<td><code>/var/</code></td>
+<td>Log files, temporary storage</td>
+</tr>
+<tr>
+<td><code>/tmp/</code></td>
+<td>Temporary files</td>
+</tr>
+<tr>
+<td><code>/dev/</code></td>
+<td>Device files</td>
+</tr>
+<tr>
+<td><code>/mnt/</code></td>
+<td>Mounted file systems</td>
+</tr>
+</tbody>
+</table>
+<h3 id="navigation-commands">Navigation Commands:</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user<span class="w">   </span><span class="c1"># Change directory</span>
+ls<span class="w"> </span>-l<span class="w">           </span><span class="c1"># List directory contents</span>
+<span class="nb">pwd</span><span class="w">             </span><span class="c1"># Print current working directory</span>
+mkdir<span class="w"> </span>newdir<span class="w">    </span><span class="c1"># Create a new directory</span>
+rmdir<span class="w"> </span>olddir<span class="w">    </span><span class="c1"># Remove an empty directory</span>
+</code></pre></div>
+<h2 id="how-files-are-stored-and-accessed">How Files Are Stored and Accessed</h2>
+<p>Files in a Unix system are stored in <strong>blocks</strong> on a physical or virtual storage device. The file system manages how these blocks are allocated and retrieved.</p>
+<h3 id="file-storage-process">File Storage Process</h3>
+<ol>
+<li><strong>File Creation</strong>: When a file is created, an inode is assigned to store metadata.</li>
+<li><strong>Data Storage</strong>: The actual file contents are divided into <strong>blocks</strong> and stored in available disk space.</li>
+<li><strong>Indexing with Inodes</strong>: The inode maintains a list of pointers to the blocks containing the file’s data.</li>
+</ol>
+<h3 id="accessing-files">Accessing Files</h3>
+<p>When a file is accessed, the file system:</p>
+<ol>
+<li><strong>Locates the inode</strong> using the directory structure.</li>
+<li><strong>Reads the inode metadata</strong> to retrieve block locations.</li>
+<li><strong>Retrieves the blocks</strong> and reconstructs the file contents.</li>
+</ol>
+<p><img alt="File Storage and Inodes" src="img/file_storage_inodes.webp" /></p>
+<h2 id="interactive-microsim">Interactive MicroSim</h2>
+<p>Explore how file descriptors, the open file table, and the inode table work together with this interactive MicroSim:</p>
+<p>👉 <a href="../../sims/file-system-access/main.html">Launch the File Access MicroSim</a></p>
+<h2 id="file-system-types-in-unix">File System Types in Unix</h2>
+<p>Unix supports multiple file system types, each optimized for different use cases:</p>
+<ul>
+<li><strong>Ext4</strong> – Default Linux file system with journaling support.</li>
+<li><strong>XFS</strong> – High-performance file system for large-scale storage.</li>
+<li><strong>ZFS</strong> – Advanced file system with built-in volume management.</li>
+<li><strong>NFS</strong> – Network File System for remote file sharing.</li>
+<li><strong>tmpfs</strong> – In-memory file system for temporary storage.</li>
+</ul>
+<h2 id="system-calls-for-file-operations">System Calls for File Operations</h2>
+<p>Unix provides system calls for direct file manipulation:</p>
+<ul>
+<li><code>open()</code>: Opens a file and returns a file descriptor.</li>
+<li><code>read()</code>: Reads data from a file descriptor.</li>
+<li><code>write()</code>: Writes data to a file descriptor.</li>
+<li><code>close()</code>: Closes an open file descriptor.</li>
+<li><code>stat()</code>: Retrieves file metadata.</li>
+</ul>
+<h3 id="example-reading-a-file">Example: Reading a File</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;Error opening file&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="File Operations" src="img/file_operations.png" /></p>
+<h2 id="file-permissions-and-access-control">File Permissions and Access Control</h2>
+<p>Unix uses a permission model to control access to files and directories. Each file has three permission sets:</p>
+<ul>
+<li><strong>User (Owner)</strong></li>
+<li><strong>Group</strong></li>
+<li><strong>Others</strong></li>
+</ul>
+<p>Permissions are represented using <strong>rwx</strong> notation:</p>
+<ul>
+<li><code>r</code> (read) – View file contents</li>
+<li><code>w</code> (write) – Modify file contents</li>
+<li><code>x</code> (execute) – Run a file as a program</li>
+</ul>
+<h3 id="viewing-and-modifying-permissions">Viewing and Modifying Permissions</h3>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>myfile.txt<span class="w">   </span><span class="c1"># View file permissions</span>
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>myfile.txt<span class="w">   </span><span class="c1"># Change permissions</span>
+chown<span class="w"> </span>user:group<span class="w"> </span>myfile.txt<span class="w">   </span><span class="c1"># Change file owner and group</span>
+</code></pre></div>
+<p><img alt="File Permissions" src="img/file_permissions.jpg" /></p>
+<h2 id="interactive-quiz">Interactive Quiz</h2>
+<p>Test your knowledge of file systems:</p>
+<ol>
+<li>
+<p>What command is used to display file metadata?</p>
+<p><strong>A</strong>. <code>ls -l</code><br>
+<strong>B</strong>. <code>cat</code><br>
+<strong>C</strong>. <code>rm</code><br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>A</strong>. The <code>ls -l</code> command lists detailed file information, including permissions, owner, and size.</p>
+</details>
+</li>
+<li>
+<p>Which of the following is NOT a valid Unix file system type?</p>
+<p><strong>A</strong>. Ext4<br>
+<strong>B</strong>. FAT32<br>
+<strong>C</strong>. XFS<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>B</strong>. FAT32 is a Windows file system, not commonly used in Unix systems.</p>
+</details>
+</li>
+<li>
+<p>What does the <code>chmod 755 myfile.txt</code> command do?</p>
+<p><strong>A</strong>. Grants full permissions to the owner and read/execute permissions to others<br>
+<strong>B</strong>. Deletes the file<br>
+<strong>C</strong>. Moves the file to another directory<br></p>
+<details class="question">
+<summary>Show Answer</summary>
+<p>The correct answer is <strong>A</strong>. <code>chmod 755</code> allows the owner full access (<code>rwx</code>) and read/execute access (<code>r-x</code>) for others.</p>
+</details>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Unix file systems store files using <strong>blocks and inodes</strong>.</li>
+<li>Metadata is stored separately in <strong>inodes</strong>.</li>
+<li>The Unix file system follows a <strong>hierarchical directory structure</strong>.</li>
+<li><strong>File permissions</strong> protect data integrity and security.</li>
+</ul>
+<p>Understanding file systems is crucial for managing data efficiently. The next chapter will cover <strong>Virtual Memory</strong> and its role in memory management.</p>
+<hr />
+<p><em>This chapter is based on material from "Advanced Programming in the UNIX Environment, Third Edition, by W. Richard Stevens and Stephen A. Rago, 2013."</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../sims/stack_memory.html"></script>
+      
+    
+  </body>
+</html>
