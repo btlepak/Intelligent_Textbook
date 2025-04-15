@@ -4,30 +4,36 @@ nav:
   - Home: index.md
   - Course Description: cd.md
   - List of Chapters:
-    - Introduction: chapters/1-intro.md
-    - Operating Systems Overview: chapters/2-overview.md
-    - Programs and Processes: chapters/3-PandP.md
-    - I/O Basics & Redirection: chapters/4-io.md
-    - File Systems: chapters/5-fs.md
-    - Virtual Memory: chapters/6-vm.md
-    - Signals: chapters/7-signals.md
-    - Pipes: chapters/8-pipes.md
-    - Shared Memory: chapters/9-sm.md
-    - Sockets and Communication: chapters/10-SandC.md
-    - TCP & UDP: chapters/11-tcpudp.md
-    - Threads: chapters/12-threads.md
+    - Programs and Processes: chapters/1_PandP/index.md
+    - I/O Basics & Redirection: chapters/2_io/index.md
+    - File Systems: chapters/3_fs/index.md
+    - Virtual Memory: chapters/4_vm/index.md
+    - Signals: chapters/5_signals/index.md
+    - Pipes: chapters/6_pipes/index.md
+    - Shared Memory: chapters/7_sm/index.md
+    - Sockets and Communication: chapters/8_SandC/index.md
+    - TCP & UDP: chapters/9_tcpudp/index.md
+    - Threads: chapters/10_threads/index.md
   - Projects:
     - Project 1: projects/proj1.md
-    - Project 2: projects/proj2.md
-    - Project 3: projects/proj3.md
-    - Project 4: projects/proj4.md
-  - Prompts: 
-    - Prompt 1: prompts/prompt1.md
-  - MircoSims: microSims/index.md
+  - Sims: 
+    - Learning Graph: sims/learning-graph/index.md
+    - Word Cloud: sims/wordcloud/index.md
+    - Process Tree: sims/process-tree/index.md
+    - File System Access: sims/file-system-access/index.md
+    - Virtual Memory Mapping: sims/virtual-memory-mapping/index.md
+  - Glossary: glossary.md
+  - References: references.md
   - Contact: contact.md
 
 extra_javascript:
-  - microSims/stack_memory.html
+  - sims/stack_memory.html
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed
 
 theme:
   name: material

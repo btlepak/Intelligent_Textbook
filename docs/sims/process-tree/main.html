@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process Tree MicroSim</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    .controls {
+      margin-bottom: 1rem;
+    }
+    button {
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .process-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .node {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      margin: 0.5rem;
+      background: #fff;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+    .node.selected {
+      background-color: #e0f3ff;
+    }
+    .node.fade-out {
+      opacity: 0.2;
+    }
+    .tree-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .children {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .log {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-top: 2rem;
+      max-height: 150px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .back-button {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Interactive Process Tree</h2>
+  <p>Click a process in the tree to select it. Use the buttons to simulate system calls on the selected process.</p>
+  <div class="controls">
+    <button onclick="forkProcess()">fork()</button>
+    <button onclick="execProcess()">exec()</button>
+    <button onclick="waitProcess()">wait()</button>
+    <button onclick="exitProcess()">exit()</button>
+  </div>
+
+  <div id="tree" class="process-tree"></div>
+  <div class="log" id="log"></div>
+
+  <div class="back-button">
+    <button onclick="window.location.href='../../chapters/1_PandP/'">← Return to Textbook</button>
+  </div>
+
+  <script>
+    let pidCounter = 1;
+    const processes = {
+      1: { pid: 1, parent: null, name: "init", children: [] }
+    };
+    let selectedPid = 1;
+
+    function logAction(message) {
+      const logBox = document.getElementById("log");
+      const entry = document.createElement("div");
+      entry.textContent = message;
+      logBox.appendChild(entry);
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function renderTree() {
+      const container = document.getElementById("tree");
+      container.innerHTML = "";
+
+      function buildTree(pid) {
+        const node = document.createElement("div");
+        node.className = "tree-line";
+        const proc = processes[pid];
+
+        const el = document.createElement("div");
+        el.className = "node";
+        el.textContent = `${proc.name} (PID ${proc.pid})`;
+        if (parseInt(pid) === selectedPid) el.classList.add("selected");
+        el.onclick = (e) => {
+          e.stopPropagation();
+          selectedPid = parseInt(pid);
+          renderTree();
+        };
+
+        node.appendChild(el);
+
+        if (proc.children.length > 0) {
+          const childrenWrapper = document.createElement("div");
+          childrenWrapper.className = "children";
+          for (let childPid of proc.children) {
+            childrenWrapper.appendChild(buildTree(childPid));
+          }
+          node.appendChild(childrenWrapper);
+        }
+        return node;
+      }
+
+      container.appendChild(buildTree(1));
+    }
+
+    function forkProcess() {
+      if (!selectedPid || !processes[selectedPid]) return;
+      pidCounter++;
+      const newPid = pidCounter;
+      const newProc = {
+        pid: newPid,
+        parent: selectedPid,
+        name: "child",
+        children: []
+      };
+      processes[newPid] = newProc;
+      processes[selectedPid].children.push(newPid);
+      logAction(`fork(): Process ${selectedPid} created child process ${newPid}`);
+      renderTree();
+    }
+
+    function execProcess() {
+      const proc = processes[selectedPid];
+      if (proc) {
+        proc.name = "exec'd";
+        logAction(`exec(): Process ${selectedPid} has replaced its code with a new program`);
+        renderTree();
+      }
+    }
+
+    function waitProcess() {
+      const proc = processes[selectedPid];
+      if (proc && proc.children.length > 0) {
+        const childPid = proc.children[0];
+        proc.children = proc.children.slice(1);
+        fadeAndRemove(childPid, `wait(): Process ${selectedPid} waited for and cleaned up child ${childPid}`);
+      } else {
+        logAction(`wait(): Process ${selectedPid} has no children to wait for.`);
+      }
+    }
+
+    function exitProcess() {
+      const proc = processes[selectedPid];
+      if (!proc || proc.pid === 1) return;
+      const parentProc = processes[proc.parent];
+      if (parentProc) {
+        parentProc.children = parentProc.children.filter(pid => pid !== selectedPid);
+        fadeAndRemove(proc.pid, `exit(): Process ${proc.pid} has exited.`);
+        selectedPid = proc.parent;
+      }
+    }
+
+    function fadeAndRemove(pid, logMsg) {
+      const allNodes = document.querySelectorAll('.node');
+      allNodes.forEach(node => {
+        if (node.textContent.includes(`PID ${pid}`)) {
+          node.classList.add("fade-out");
+          setTimeout(() => {
+            delete processes[pid];
+            logAction(logMsg);
+            renderTree();
+          }, 500);
+        }
+      });
+    }
+
+    renderTree();
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Access MicroSim</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f8f9fa;
+      margin: 2rem auto;
+      max-width: 1000px;
+      padding: 1rem;
+    }
+    h2, h3 {
+      color: #2c3e50;
+    }
+    .section {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .table {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .table div {
+      width: 30%;
+      min-width: 280px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 0.3rem 0;
+      padding: 0.3rem 0.6rem;
+      background: #e0f3ff;
+      border: 1px solid #007bff;
+      border-radius: 4px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .log {
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-top: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    select {
+      padding: 0.4rem;
+      font-size: 1rem;
+      border-radius: 4px;
+    }
+    .back-button {
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Interactive File Access MicroSim</h2>
+  <p>This MicroSim demonstrates how file access works through file descriptors, the system-wide open file table, and the inode table.</p>
+
+  <div class="section controls">
+    <button onclick="openFile('report.txt')">Open report.txt</button>
+    <button onclick="openFile('main.c')">Open main.c</button>
+    <button onclick="openFile('script.py')">Open script.py</button>
+    <select id="fd-select"></select>
+    <button onclick="closeSelectedFd()">Close Selected FD</button>
+  </div>
+
+  <div class="section table">
+    <div>
+      <h3>File Descriptors</h3>
+      <ul id="fd-table"></ul>
+    </div>
+    <div>
+      <h3>Open File Table</h3>
+      <ul id="oft"></ul>
+    </div>
+    <div>
+      <h3>Inode Table</h3>
+      <ul id="inode-table"></ul>
+    </div>
+  </div>
+
+  <div class="log" id="log"></div>
+
+  <div class="back-button">
+    <button onclick="window.location.href='../../chapters/3_fs/'">← Return to Textbook</button>
+  </div>
+
+  <script>
+    let fdTable = {};
+    let openFileTable = [];
+    let inodeTable = {
+      'report.txt': { inode: 101, refCount: 0 },
+      'main.c': { inode: 102, refCount: 0 },
+      'script.py': { inode: 103, refCount: 0 }
+    };
+    let fdCounter = 0;
+
+    function log(msg) {
+      const logBox = document.getElementById('log');
+      const line = document.createElement('div');
+      line.textContent = msg;
+      logBox.appendChild(line);
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function openFile(fileName) {
+      const oftIndex = openFileTable.findIndex(entry => entry.file === fileName);
+      let entry;
+      if (oftIndex !== -1) {
+        entry = openFileTable[oftIndex];
+        entry.refCount++;
+      } else {
+        entry = { file: fileName, inode: inodeTable[fileName].inode, refCount: 1 };
+        openFileTable.push(entry);
+      }
+      inodeTable[fileName].refCount++;
+      fdTable[fdCounter] = entry;
+      log(`Opened ${fileName} as FD ${fdCounter}`);
+      fdCounter++;
+      render();
+    }
+
+    function closeSelectedFd() {
+      const fd = parseInt(document.getElementById('fd-select').value);
+      closeFile(fd);
+    }
+
+    function closeFile(fd) {
+      const entry = fdTable[fd];
+      if (!entry) {
+        log(`FD ${fd} is not open.`);
+        return;
+      }
+      entry.refCount--;
+      inodeTable[entry.file].refCount--;
+      if (entry.refCount === 0) {
+        const index = openFileTable.findIndex(e => e.file === entry.file);
+        if (index !== -1) openFileTable.splice(index, 1);
+      }
+      delete fdTable[fd];
+      log(`Closed FD ${fd}`);
+      render();
+    }
+
+    function render() {
+      const fdList = document.getElementById('fd-table');
+      const oftList = document.getElementById('oft');
+      const inodeList = document.getElementById('inode-table');
+      const fdSelect = document.getElementById('fd-select');
+      fdList.innerHTML = '';
+      oftList.innerHTML = '';
+      inodeList.innerHTML = '';
+      fdSelect.innerHTML = '';
+
+      for (let fd in fdTable) {
+        const li = document.createElement('li');
+        li.textContent = `FD ${fd} → ${fdTable[fd].file}`;
+        fdList.appendChild(li);
+
+        const option = document.createElement('option');
+        option.value = fd;
+        option.textContent = `FD ${fd}`;
+        fdSelect.appendChild(option);
+      }
+      openFileTable.forEach((entry, i) => {
+        const li = document.createElement('li');
+        li.textContent = `OFT[${i}]: ${entry.file}, refCount=${entry.refCount}`;
+        oftList.appendChild(li);
+      });
+      for (let name in inodeTable) {
+        const li = document.createElement('li');
+        li.textContent = `${name}: inode=${inodeTable[name].inode}, refCount=${inodeTable[name].refCount}`;
+        inodeList.appendChild(li);
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
