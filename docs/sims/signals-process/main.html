@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signals and Processes MicroSim</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f9f9f9;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 1rem;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    .processes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .process {
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      background: white;
+      text-align: center;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s, opacity 0.5s ease;
+    }
+    .process h3 {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+    }
+    .process p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    .process.alive {
+      border-color: #28a745;
+    }
+    .process.paused {
+      border-color: #ffc107;
+      background: #fff8e1;
+    }
+    .process.selected {
+      background-color: #cce5ff;
+      border-color: #0056b3;
+    }
+    .child-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+      border-left: 2px dashed #aaa;
+      padding-left: 1rem;
+    }
+    .top-level {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .controls, .add-process-controls {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    button, input[type="text"], select {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+    }
+    .log {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #eee;
+      border-radius: 6px;
+      height: 200px;
+      overflow-y: auto;
+    }
+    .back-button {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .back-button button {
+      background: #007bff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .back-button button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Signals and Process Management MicroSim</h2>
+  <p>Click on a process to select it. Add children or send signals based on your selection!</p>
+
+  <div class="add-process-controls">
+    <input type="text" id="new-process-name" placeholder="New Process Name" />
+    <button onclick="addProcess()">Add New Process</button>
+
+    <select id="signal-select">
+      <option value="SIGTERM">SIGTERM (Terminate)</option>
+      <option value="SIGKILL">SIGKILL (Force Kill)</option>
+      <option value="SIGSTOP">SIGSTOP (Pause)</option>
+      <option value="SIGCONT">SIGCONT (Continue)</option>
+    </select>
+    <button onclick="sendSignal()">Send Signal</button>
+  </div>
+
+  <div class="processes" id="processes"></div>
+
+  <div class="log" id="log"></div>
+
+  <div class="back-button">
+    <button onclick="window.location.href='../../chapters/5_signals/'">← Return to Textbook</button>
+  </div>
+
+  <script>
+    let processList = [
+      { pid: 101, name: "Process A", state: "alive", parent: null },
+      { pid: 102, name: "Process B", state: "alive", parent: null },
+      { pid: 103, name: "Process C", state: "alive", parent: null }
+    ];
+    let nextPid = 104;
+    let selectedParentPid = null;
+
+    function renderProcesses() {
+      const container = document.getElementById('processes');
+      container.innerHTML = '';
+
+      const topLevel = processList.filter(p => p.parent === null);
+      topLevel.forEach(proc => {
+        container.appendChild(buildProcessTree(proc));
+      });
+    }
+
+    function buildProcessTree(proc) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'top-level';
+
+      const div = document.createElement('div');
+      div.className = `process ${proc.state}`;
+      if (proc.pid === selectedParentPid) div.classList.add('selected');
+      div.innerHTML = `<h3>${proc.name}</h3><p>PID: ${proc.pid}</p>${proc.parent !== null ? `<p>Parent PID: ${proc.parent}</p>` : ''}`;
+      div.onclick = (e) => {
+        e.stopPropagation();
+        toggleSelect(proc.pid);
+      };
+
+      wrapper.appendChild(div);
+
+      const children = processList.filter(p => p.parent === proc.pid);
+      if (children.length > 0) {
+        const childContainer = document.createElement('div');
+        childContainer.className = 'child-container';
+        children.forEach(child => {
+          childContainer.appendChild(buildProcessTree(child));
+        });
+        wrapper.appendChild(childContainer);
+      }
+
+      return wrapper;
+    }
+
+    function toggleSelect(pid) {
+      if (selectedParentPid === pid) {
+        selectedParentPid = null;
+      } else {
+        selectedParentPid = pid;
+      }
+      renderProcesses();
+    }
+
+    function addProcess() {
+      const name = document.getElementById('new-process-name').value.trim();
+      if (name) {
+        processList.push({ pid: nextPid++, name, state: 'alive', parent: selectedParentPid });
+        logAction(`New process '${name}' created${selectedParentPid ? ` with parent PID ${selectedParentPid}` : ''}.`);
+        document.getElementById('new-process-name').value = '';
+        renderProcesses();
+      }
+    }
+
+    function sendSignal() {
+      if (selectedParentPid === null) {
+        alert('Select a process to send the signal to.');
+        return;
+      }
+      const signal = document.getElementById('signal-select').value;
+      const proc = processList.find(p => p.pid === selectedParentPid);
+      if (!proc) return;
+
+      switch (signal) {
+        case 'SIGTERM':
+        case 'SIGKILL':
+          fadeOutProcess(proc.pid);
+          logAction(`${signal} sent to PID ${proc.pid}. Process terminated.`);
+          break;
+        case 'SIGSTOP':
+          proc.state = 'paused';
+          logAction(`SIGSTOP sent to PID ${proc.pid}. Process paused.`);
+          renderProcesses();
+          break;
+        case 'SIGCONT':
+          proc.state = 'alive';
+          logAction(`SIGCONT sent to PID ${proc.pid}. Process continued.`);
+          renderProcesses();
+          break;
+      }
+    }
+
+    function fadeOutProcess(pid) {
+      const container = document.getElementById('processes');
+      const elements = container.querySelectorAll('.process');
+      elements.forEach(el => {
+        if (el.innerHTML.includes(`PID: ${pid}`)) {
+          el.style.opacity = '0.2';
+          setTimeout(() => {
+            processList = processList.filter(p => p.pid !== pid);
+            if (selectedParentPid === pid) selectedParentPid = null;
+            renderProcesses();
+          }, 500);
+        }
+      });
+    }
+
+    function logAction(message) {
+      const log = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.textContent = message;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    renderProcesses();
+  </script>
+</body>
+</html>

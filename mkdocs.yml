@@ -15,13 +15,19 @@ nav:
     - TCP & UDP: chapters/9_tcpudp/index.md
     - Threads: chapters/10_threads/index.md
   - Projects:
-    - Project 1: projects/proj1.md
+    - Project 1: projects/project 1/proj1.md
+    - Project 2: projects/project 2/proj2.md
+    - Project 3: projects/project 3/proj3.md
   - Sims: 
     - Learning Graph: sims/learning-graph/index.md
     - Word Cloud: sims/wordcloud/index.md
     - Process Tree: sims/process-tree/index.md
     - File System Access: sims/file-system-access/index.md
     - Virtual Memory Mapping: sims/virtual-memory-mapping/index.md
+    - Process Signal Manipulation: sims/signals-process/index.md
+    - Shared Memory Race: sims/shared-mem-race/index.md
+    - Socket Communication: sims/socket-communication/index.md
+    - Thread Scheduling: sims/thread-scheduling/index.md
   - Glossary: glossary.md
   - References: references.md
   - Contact: contact.md

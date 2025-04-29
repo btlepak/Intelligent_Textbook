@@ -17,6 +17,13 @@ Shared memory allows processes to map the same region of physical memory into th
 
 ![Shared Memory Concept](img/shared_memory_overview.png)
 
+## 🧠 Interactive MicroSim
+
+Explore how shared memory can lead to race conditions and understand how synchronization prevents problems with this detailed visual simulator:
+
+👉 [Launch the Shared Memory Race Condition Visualizer](../../sims/shared-mem-race/main.html)
+
+
 ### Benefits:
 - **Speed**: Data is exchanged without kernel intervention after setup.
 - **Flexibility**: Ideal for large or frequent data transfers.

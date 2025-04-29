@@ -40,6 +40,13 @@ To view all signals:
 kill -l
 ```
 
+## 🚦 Interactive MicroSim
+
+Visualize how signals interact with processes — send signals, create parent/child processes, and watch how the process tree evolves in real time:
+
+👉 [Launch the Signals and Process Management MicroSim](../../sims/signals-process/main.html)
+
+
 ## Sending Signals
 Signals can be sent using system calls or shell commands.
 

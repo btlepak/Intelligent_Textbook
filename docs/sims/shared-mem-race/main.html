@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared Memory Race Condition Visualizer</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f9f9f9; margin: 2rem; text-align: center; }
+  h2 { color: #2c3e50; }
+  .memory { background: #e0f3ff; border: 2px solid #007bff; border-radius: 6px; display: inline-block; padding: 1rem; margin: 1rem; font-size: 1.5rem; }
+  .processes { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; }
+  .process { background: white; border: 2px solid #28a745; border-radius: 6px; width: 220px; padding: 1rem; transition: background 0.4s, transform 0.3s; position: relative; }
+  .process.active { background: #d1ecf1; border-color: #17a2b8; transform: scale(1.05); }
+  .counter-box { margin-top: 0.5rem; font-size: 0.9rem; }
+  .controls { margin: 1.5rem 0; }
+  button, select { padding: 0.5rem 1rem; margin: 0.5rem; font-size: 1rem; }
+  .log { background: #eee; border-radius: 6px; padding: 1rem; max-height: 300px; overflow-y: auto; margin-top: 1.5rem; text-align: left; font-size: 0.9rem; }
+  .race-warning { background-color: #ffcccc; border: 2px solid #dc3545; padding: 0.5rem; margin: 1rem auto; width: fit-content; font-weight: bold; color: #721c24; border-radius: 6px; display: none; }
+  .back-button { margin-top: 2rem; }
+  .back-button button { background: #007bff; color: white; border: none; border-radius: 5px; padding: 0.5rem 1rem; cursor: pointer; }
+  .auto-active { background: #17a2b8 !important; }
+</style>
+</head>
+<body>
+<h2>Shared Memory and Race Condition Visualizer (v5)</h2>
+
+<div class="memory" id="shared-memory">Counter = 0</div>
+
+<div class="processes">
+  <div class="process" id="processA">
+    <h3>Process A</h3>
+    <div class="counter-box" id="counterA">Reads: 0 | Writes: 0</div>
+  </div>
+  <div class="process" id="processB">
+    <h3>Process B</h3>
+    <div class="counter-box" id="counterB">Reads: 0 | Writes: 0</div>
+  </div>
+</div>
+
+<div class="controls">
+  <select id="mode-select">
+    <option value="lock">Lock Enabled (Safe)</option>
+    <option value="nolock">Lock Disabled (Race Possible)</option>
+  </select>
+  <button onclick="stepSimulation()">Step</button>
+  <button id="auto-run-btn" onclick="toggleAutoRun()">Auto-Run</button>
+</div>
+
+<div class="race-warning" id="race-warning">⚠️ Race Condition Detected!</div>
+<div class="log" id="log"></div>
+
+<div class="back-button">
+  <button onclick="window.location.href='../../chapters/7_sm/'">← Return to Textbook</button>
+</div>
+
+<script>
+let counter = 0;
+let lockEnabled = true;
+let lockHeld = false;
+let running = false;
+let autoRunning = false;
+let raceDetected = false;
+let readCountA = 0, writeCountA = 0;
+let readCountB = 0, writeCountB = 0;
+let lastAccess = null;
+
+function log(message) {
+  const entry = document.createElement('div');
+  entry.innerHTML = message;
+  document.getElementById('log').appendChild(entry);
+  document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+}
+
+function updateMemory() {
+  document.getElementById('shared-memory').textContent = `Counter = ${counter}`;
+  document.getElementById('counterA').textContent = `Reads: ${readCountA} | Writes: ${writeCountA}`;
+  document.getElementById('counterB').textContent = `Reads: ${readCountB} | Writes: ${writeCountB}`;
+}
+
+function highlightProcess(pid) {
+  document.getElementById('processA').classList.remove('active');
+  document.getElementById('processB').classList.remove('active');
+  document.getElementById(`process${pid}`).classList.add('active');
+}
+
+function clearHighlight() {
+  document.getElementById('processA').classList.remove('active');
+  document.getElementById('processB').classList.remove('active');
+}
+
+async function stepSimulation() {
+  if (running) return;
+  lockEnabled = document.getElementById('mode-select').value === 'lock';
+  document.getElementById('race-warning').style.display = 'none';
+  raceDetected = false;
+
+  await simulateProcess('A');
+  await simulateProcess('B');
+}
+
+async function simulateProcess(pid) {
+  highlightProcess(pid);
+  log(`Process ${pid} is preparing to access the shared resource...`);
+
+  await sleep(1000);
+
+  if (lockEnabled) {
+    if (!lockHeld) {
+      lockHeld = true;
+      log(`🔒 Lock acquired by Process ${pid}.`);
+    }
+  } else {
+    if (lastAccess && Math.random() < 0.5 && !raceDetected) {
+      document.getElementById('race-warning').style.display = 'block';
+      log(`⚠️ Race Condition: Process ${pid} tried to **access** while ${lastAccess} was already **accessing**.`);
+      raceDetected = true;
+    }
+  }
+
+  lastAccess = pid;
+
+  log(`Process ${pid} is <b>reading</b> from the shared resource.`);
+  if (pid === 'A') readCountA++;
+  else readCountB++;
+
+  let localCopy = counter;
+  await sleep(1200);
+
+  log(`Process ${pid} is <b>writing</b> to the shared resource.`);
+  counter = localCopy + 1;
+  if (pid === 'A') writeCountA++;
+  else writeCountB++;
+
+  updateMemory();
+
+  if (lockEnabled) {
+    lockHeld = false;
+    log(`🔓 Lock released by Process ${pid}.`);
+  }
+
+  clearHighlight();
+  await sleep(500);
+}
+
+function toggleAutoRun() {
+  autoRunning = !autoRunning;
+  const btn = document.getElementById('auto-run-btn');
+  if (autoRunning) {
+    btn.classList.add('auto-active');
+    runAutoLoop();
+  } else {
+    btn.classList.remove('auto-active');
+  }
+}
+
+async function runAutoLoop() {
+  while (autoRunning) {
+    await stepSimulation();
+    await sleep(1000);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+updateMemory();
+</script>
+
+</body>
+</html>

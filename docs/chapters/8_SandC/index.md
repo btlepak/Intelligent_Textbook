@@ -108,6 +108,13 @@ int main() {
 
 ![Socket Lifecycle](img/socket_lifecycle.png)
 
+## 🌐 Interactive MicroSim
+
+Visualize how sockets handle client-server communication — see TCP handshakes, message sending, and connection closing with animated channels and pulses:
+
+👉 [Launch the Socket Communication Simulator](../../sims/socket-communication/main.html)
+
+
 ## Address Structures
 Sockets use `struct sockaddr_in` for IPv4:
 ```c

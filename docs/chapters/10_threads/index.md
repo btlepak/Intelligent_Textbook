@@ -84,6 +84,13 @@ int main() {
 ## Condition Variables
 Condition variables allow threads to wait for specific conditions to occur.
 
+## 🧵 Interactive MicroSim
+
+Explore how threads are created, scheduled, blocked, and synchronized inside an operating system — visualize ready queues, CPU scheduling, and mutex locking in action:
+
+👉 [Launch the Thread Scheduling and Synchronization Visualizer](../../sims/thread-scheduling/main.html)
+
+
 ### Example: Producer-Consumer (Pseudo-code)
 ```c
 pthread_mutex_t mutex;

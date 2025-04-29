@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thread Scheduling and Synchronization Visualizer (Fixed)</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f9f9f9; margin: 2rem; text-align: center; }
+  h2 { color: #2c3e50; }
+  .simulation { display: flex; justify-content: space-around; align-items: flex-start; margin-top: 2rem; }
+  .queue, .cpu, .resource { border: 2px solid #007bff; border-radius: 8px; background: #e0f3ff; padding: 1rem; width: 250px; min-height: 300px; position: relative; }
+  .thread { background: white; border: 2px solid #28a745; border-radius: 6px; margin: 0.5rem; padding: 0.5rem; }
+  .thread.blocked { background: #fff3cd; border-color: #ffc107; }
+  .thread.running { background: #d4edda; border-color: #28a745; }
+  .controls { margin-top: 2rem; }
+  button { padding: 0.5rem 1rem; margin: 0.5rem; font-size: 1rem; }
+  select { padding: 0.4rem 1rem; margin: 0.5rem; font-size: 1rem; }
+  .log { background: #eee; margin-top: 2rem; border-radius: 6px; padding: 1rem; max-height: 250px; overflow-y: auto; text-align: left; font-size: 0.9rem; }
+  .highlight { animation: flash 1s; }
+  @keyframes flash { 0% { background: #ffff99; } 100% { background: #e0f3ff; } }
+  .back-button { margin-top: 2rem; }
+  .back-button button { background: #007bff; color: white; border: none; border-radius: 5px; padding: 0.5rem 1rem; cursor: pointer; }
+</style>
+</head>
+<body>
+<h2>Thread Scheduling and Synchronization Visualizer</h2>
+
+<div class="simulation">
+  <div class="queue" id="ready-queue">
+    <h3>Ready Queue</h3>
+    <div id="queue-list"></div>
+  </div>
+
+  <div class="cpu" id="cpu">
+    <h3>CPU Core</h3>
+    <div id="cpu-core">IDLE</div>
+  </div>
+
+  <div class="resource" id="resource">
+    <h3>Shared Resource</h3>
+    <div id="lock-status">Unlocked</div>
+  </div>
+</div>
+
+<div class="controls">
+  <button onclick="createThread()">Create Thread</button>
+  <button onclick="stepScheduler()">Step Scheduler</button>
+  <button onclick="toggleAutoRun()">Auto-Run</button>
+  <select id="lock-mode">
+    <option value="nolock">No Locks</option>
+    <option value="lock">Use Mutex Lock</option>
+  </select>
+</div>
+
+<div class="log" id="log"></div>
+
+<div class="back-button">
+  <button onclick="window.location.href='../../chapters/10_threads/'">← Return to Textbook</button>
+</div>
+
+<script>
+let threadCounter = 0;
+let readyQueue = [];
+let blockedThreads = [];
+let cpuThread = null;
+let lockHeld = false;
+let autoRunning = false;
+
+function log(message) {
+  const entry = document.createElement('div');
+  entry.innerHTML = message;
+  document.getElementById('log').appendChild(entry);
+  document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+}
+
+function createThread() {
+  threadCounter++;
+  const thread = { id: threadCounter, status: 'READY' };
+  readyQueue.push(thread);
+  log(`🧵 Thread ${thread.id} created and added to Ready Queue.`);
+  updateDisplay();
+}
+
+async function stepScheduler() {
+  if (cpuThread) {
+    // Thread finished using CPU
+    log(`✅ Thread ${cpuThread.id} finished execution.`);
+    if (document.getElementById('lock-mode').value === 'lock' && lockHeld) {
+      lockHeld = false;
+      document.getElementById('lock-status').textContent = 'Unlocked';
+      log(`🔓 Lock released by Thread ${cpuThread.id}.`);
+    }
+    cpuThread = null;
+    document.getElementById('cpu-core').textContent = 'IDLE';
+  }
+
+  if (readyQueue.length > 0) {
+    const nextThread = readyQueue.shift();
+    if (document.getElementById('lock-mode').value === 'lock' && lockHeld) {
+      nextThread.status = 'BLOCKED';
+      blockedThreads.push(nextThread);
+      log(`⏸️ Thread ${nextThread.id} BLOCKED (waiting for lock).`);
+    } else {
+      cpuThread = nextThread;
+      cpuThread.status = 'RUNNING';
+      log(`⚡ Thread ${cpuThread.id} is now RUNNING on CPU.`);
+      if (document.getElementById('lock-mode').value === 'lock') {
+        lockHeld = true;
+        document.getElementById('lock-status').textContent = 'Locked';
+        log(`🔒 Thread ${cpuThread.id} acquired lock on Shared Resource.`);
+      }
+      document.getElementById('cpu-core').innerHTML = `Thread ${cpuThread.id}`;
+    }
+  } else {
+    log('⚠️ Ready Queue is empty. No threads to schedule.');
+  }
+
+  // Check if any blocked threads can now be unblocked
+  if (!lockHeld && blockedThreads.length > 0) {
+    const unblocked = blockedThreads.shift();
+    unblocked.status = 'READY';
+    readyQueue.push(unblocked);
+    log(`🔓 Thread ${unblocked.id} unblocked and moved back to Ready Queue.`);
+  }
+
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const queueList = document.getElementById('queue-list');
+  queueList.innerHTML = '';
+  readyQueue.forEach(thread => {
+    const div = document.createElement('div');
+    div.className = 'thread';
+    div.innerHTML = `Thread ${thread.id} <br>Status: ${thread.status}`;
+    queueList.appendChild(div);
+  });
+}
+
+async function toggleAutoRun() {
+  autoRunning = !autoRunning;
+  if (autoRunning) {
+    autoLoop();
+  }
+}
+
+async function autoLoop() {
+  while (autoRunning) {
+    await stepScheduler();
+    await sleep(1500);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+</script>
+</body>
+</html>
