@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socket Communication Simulator</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f9f9f9; margin: 2rem; text-align: center; }
+  h2 { color: #2c3e50; }
+  .simulation { position: relative; display: flex; justify-content: space-around; align-items: flex-start; margin-top: 2rem; }
+  .server, .clients { border: 2px solid #007bff; border-radius: 8px; background: #e0f3ff; padding: 1rem; width: 300px; min-height: 300px; transition: background 0.4s, transform 0.3s; position: relative; }
+  .client { border: 2px solid #28a745; background: white; border-radius: 6px; margin: 0.5rem; padding: 0.5rem; opacity: 1; transition: opacity 0.5s, transform 0.3s; }
+  .client.connected { background: #d4edda; }
+  .pulse { width: 10px; height: 10px; border-radius: 50%; position: absolute; }
+  .pulse.syn { background: blue; }
+  .pulse.data { background: green; }
+  .pulse.fin { background: red; }
+  .controls { margin-top: 2rem; }
+  button { padding: 0.5rem 1rem; margin: 0.5rem; font-size: 1rem; }
+  .log { background: #eee; margin-top: 2rem; border-radius: 6px; padding: 1rem; max-height: 250px; overflow-y: auto; text-align: left; font-size: 0.9rem; }
+  .fade-out { opacity: 0; transform: scale(0.8); }
+  .line { position: absolute; height: 2px; background: #007bff; top: 80px; }
+  .back-button { margin-top: 2rem; }
+  .back-button button { background: #007bff; color: white; border: none; border-radius: 5px; padding: 0.5rem 1rem; cursor: pointer; }
+</style>
+</head>
+<body>
+<h2>Socket Communication Simulator (v2)</h2>
+
+<div class="simulation">
+  <div class="server" id="server">
+    <h3>Server</h3>
+    <div class="status" id="server-status">LISTENING</div>
+  </div>
+
+  <div class="clients" id="clients">
+    <h3>Clients</h3>
+    <div id="client-list"></div>
+  </div>
+</div>
+
+<div class="controls">
+  <button onclick="addClient()">Add Client</button>
+  <button onclick="connectClients()">Connect Clients</button>
+  <button onclick="sendMessages()">Send Messages</button>
+  <button onclick="closeConnections()">Close Connections</button>
+  <button onclick="autoRun()">Auto Mode</button>
+</div>
+
+<div class="log" id="log"></div>
+
+<div class="back-button">
+  <button onclick="window.location.href='../../chapters/8_SandC/'">← Return to Textbook</button>
+</div>
+
+<script>
+let clients = [];
+let clientCounter = 0;
+
+function log(message) {
+  const entry = document.createElement('div');
+  entry.innerHTML = message;
+  document.getElementById('log').appendChild(entry);
+  document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+}
+
+function updateClients() {
+  const container = document.getElementById('client-list');
+  container.innerHTML = '';
+  clients.forEach(client => {
+    const div = document.createElement('div');
+    div.className = 'client ' + (client.connected ? 'connected' : '');
+    div.setAttribute('id', client.id);
+    div.innerHTML = `<strong>${client.name}</strong><br>Status: ${client.status}`;
+    container.appendChild(div);
+    drawLine(client.id);
+  });
+}
+
+function addClient() {
+  clientCounter++;
+  const client = { name: `Client ${clientCounter}`, status: 'WAITING', connected: false, id: `client${clientCounter}` };
+  clients.push(client);
+  log(`🛜 ${client.name} created.`);
+  updateClients();
+}
+
+async function connectClients() {
+  for (let client of clients) {
+    if (!client.connected) {
+      sendPulse(client.id, 'syn', 'client');
+      log(`🔄 ${client.name} sending SYN to Server...`);
+      await sleep(1000);
+      sendPulse(client.id, 'syn', 'server');
+      log(`🔄 Server replies SYN-ACK to ${client.name}...`);
+      await sleep(1000);
+      sendPulse(client.id, 'syn', 'client');
+      log(`✅ ${client.name} sends ACK. Connection Established.`);
+      client.status = 'CONNECTED';
+      client.connected = true;
+      updateClients();
+      await sleep(500);
+    }
+  }
+}
+
+async function sendMessages() {
+  for (let client of clients) {
+    if (client.connected) {
+      sendPulse(client.id, 'data', 'client');
+      log(`📤 ${client.name} sends message to Server.`);
+      await sleep(1000);
+      sendPulse(client.id, 'data', 'server');
+      log(`📥 Server replies to ${client.name}.`);
+      await sleep(1000);
+    }
+  }
+}
+
+async function closeConnections() {
+  for (let client of clients) {
+    if (client.connected) {
+      sendPulse(client.id, 'fin', 'client');
+      log(`🔻 ${client.name} sends FIN to Server.`);
+      await sleep(1000);
+      sendPulse(client.id, 'fin', 'server');
+      log(`🔻 Server sends ACK. ${client.name} connection closed.`);
+      await sleep(1000);
+      document.getElementById(client.id).classList.add('fade-out');
+      await sleep(500);
+      clients = clients.filter(c => c !== client);
+      updateClients();
+    }
+  }
+}
+
+async function autoRun() {
+  addClient();
+  await sleep(1000);
+  addClient();
+  await sleep(1000);
+  await connectClients();
+  await sleep(1000);
+  await sendMessages();
+  await sleep(1000);
+  await closeConnections();
+}
+
+function sendPulse(clientId, type, origin) {
+  const server = document.getElementById('server');
+  const client = document.getElementById(clientId);
+  if (!client) return;
+  const pulse = document.createElement('div');
+  pulse.className = `pulse ${type}`;
+  document.body.appendChild(pulse);
+
+  const start = origin === 'server' ? server.getBoundingClientRect() : client.getBoundingClientRect();
+  const end = origin === 'server' ? client.getBoundingClientRect() : server.getBoundingClientRect();
+
+  pulse.style.left = `${start.left + start.width/2}px`;
+  pulse.style.top = `${start.top + start.height/2}px`;
+
+  const duration = 1000;
+  pulse.animate([
+    { left: `${start.left + start.width/2}px`, top: `${start.top + start.height/2}px` },
+    { left: `${end.left + end.width/2}px`, top: `${end.top + end.height/2}px` }
+  ], { duration: duration });
+
+  setTimeout(() => pulse.remove(), duration);
+}
+
+function drawLine(clientId) {
+  // We can extend this later if you want to draw persistent static lines.
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+updateClients();
+</script>
+
+</body>
+</html>
