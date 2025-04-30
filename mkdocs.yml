@@ -1,5 +1,5 @@
 site_name: Intelligent Textbook v1
-repo_url: https://github.com/btlepak/i-book-v1
+repo_url: https://github.com/btlepak/Intelligent_Textbook
 nav:
   - Home: index.md
   - Course Description: cd.md
